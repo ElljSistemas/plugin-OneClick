@@ -1,0 +1,10 @@
+/* ----- 1: SETTINGS ------- */
+/* ----- 2: ATOMS ------- */
+/* ----- 3: LAYOUT ------- */
+/* ----- 4: COMPONENTS ------- */
+.configuration-steps {
+  display: flex;
+  justify-content: center;
+}
+
+/* ----- 5: AREAS ------- */
