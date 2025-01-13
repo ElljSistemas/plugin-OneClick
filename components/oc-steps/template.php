@@ -14,7 +14,7 @@ $this->import('
 ?>
 
 <div class="steps">
-    <ul :class="{'has-active' : hasActive}">
+    <ul :class="{'has-active' : hasActive()}">
         <template v-for="step in steps">
             <li @click="changeStep(step.ref)">
                 <div class="item" :ref="step.ref" :class="{'active' : step.isActive}">

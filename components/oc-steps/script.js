@@ -20,6 +20,9 @@ app.component('oc-steps', {
         this.dispatchStepActive();
     },
     computed: {
+      
+    },
+    methods: {
         hasActive() {
             for (step of this.steps) {
                 if (step.isActive) {
@@ -27,9 +30,7 @@ app.component('oc-steps', {
                 }
                 return false;
             }
-        }
-    },
-    methods: {
+        },
         changeStep(ref) {
             for (step of this.steps) {
                 step.isActive = false;

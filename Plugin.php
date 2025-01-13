@@ -48,6 +48,7 @@ class Plugin extends \MapasCulturais\Plugin
             $iconset['one-click-image'] = "majesticons:image";
             $iconset['one-click-colors-sharp'] = "material-symbols:colors-sharp";
             $iconset['one-click-dialog'] = 'wpf:ask-question';
+            $iconset['one-click-close-rounded'] = 'material-symbols:close-rounded';
         });
 
         // Garante o registro de metadados em todas as requisições
