@@ -3,7 +3,13 @@ app.component('oc-dialog', {
 
     props: {},
     data() {
-        return {}
+        return {
+            toggle: true
+        }
     },
-    methods: {}
+    methods: {
+        toggleDialog() {
+            this.toggle = !this.toggle
+        }
+    }
 });

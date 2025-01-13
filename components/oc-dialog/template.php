@@ -10,10 +10,13 @@ use MapasCulturais\i;
 $this->import('mc-icon');
 ?>
 
-<div class="oc-dialog">
-    <mc-icon name="one-click-dialog"></mc-icon>
+<div class="oc-dialog" :class="{'active' : toggle}">
+    <mc-icon name="one-click-dialog" @click="toggleDialog()"></mc-icon>
     <div class="triangle"></div>
-    <div class="content">
-        <slot name="content"></slot>
-    </div>
+    <transition name="fade">
+        <div class="content" v-if="toggle">
+            <slot name="content"></slot>
+            <mc-icon name="one-click-close-rounded" class="close" @click="toggleDialog()"></mc-icon>
+        </div>
+    </transition>
 </div>

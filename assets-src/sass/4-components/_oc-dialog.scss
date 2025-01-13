@@ -1,6 +1,5 @@
 .oc-dialog {
     position: relative;
-    height: 12rem;
 
     .iconify {
         position: relative;
@@ -18,17 +17,53 @@
         position: absolute;
         top: 20%;
         left: 3%;
-        
+        opacity: 0;
+        visibility: hidden;
+
         @media (max-width: 450px) {
             left: 6%;
         }
-    
+
+        transition: opacity 0.3s ease,
+        visibility 0.3s ease;
     }
+
     .content {
+        display: flex;
         background-color: $gray;
         width: 50%;
         position: absolute;
         left: 45px;
         border-radius: 12px;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+
+        .close {
+            font-size: 83px;
+            top: -34px;
+        }
+    }
+
+    &.active {
+        .triangle {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    transition: height 0.3s ease;
+
+    &.active {
+        height: 12rem;
+    }
+
+    &:not(.active) {
+        height: 3rem;
     }
 }
