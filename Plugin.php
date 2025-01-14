@@ -3,9 +3,9 @@
 namespace OneClick;
 
 use Exception;
+use MapasCulturais\i;
 use OneClick\Settings;
 use MapasCulturais\App;
-use MapasCulturais\i;
 
 class Plugin extends \MapasCulturais\Plugin
 {
@@ -91,6 +91,43 @@ class Plugin extends \MapasCulturais\Plugin
         foreach ($metadata as $key => $cfg) {
             $this->registerMetadata('OneClick\\Settings', $key, $cfg);
         }
+    }
+
+    /**
+     * @param Settings $settings 
+     * @return void 
+     */
+    public function setEmailSettings(\OneClick\Settings $settings): void
+    {
+        $app = App::i();
+
+        $app->config['mailer.templates']['email_teste_settings'] = [
+            'title' => i::__("{$app->siteName} - Teste de configuração de email"),
+            'template' => 'email_teste_settings.html'
+        ];
+
+        $mailer_trasport = "smtp://";
+
+        if ($settings->mailer_user) {
+            $mailer_trasport .= $settings->mailer_user;
+        }
+
+        if ($settings->mailer_password) {
+            $mailer_trasport .= ":{$settings->mailer_password}";
+        }
+
+        if ($settings->mailer_host) {
+            $mailer_trasport .= "@{$settings->mailer_host}";
+        }
+
+        if ($settings->mailer_protocol && $settings->mailer_protocol !== "LOCAL") {
+            $mailer_trasport .= $settings->mailer_protocol === 'SSL' ? ':465' : ':587';
+        } else {
+            $mailer_trasport .= ":1025";
+        }
+
+        $app->config['mailer.transport'] = $mailer_trasport;
+        $app->config['mailer.from'] = $settings->mailer_email ? $settings->mailer_email : "sysadmin@localhost";
     }
 
     /**
