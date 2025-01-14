@@ -25,5 +25,10 @@ return [
                 id integer NOT NULL);");
 
         $conn->executeQuery(" INSERT INTO settings ( id, status, metadata, create_timestamp, update_timestamp, subsite_id) VALUES (nextval('settings_id_seq'::regclass), 1, '{}',CURRENT_TIMESTAMP,CURRENT_TIMESTAMP, null)");
+    },
+    'Insere dados de configuração padrão para as configurações de e-mail' => function() use ($app, $em, $conn) {
+        $conn->executeQuery(" INSERT INTO settings_meta (id, key, value, object_id) VALUES (nextval('settings_meta_id_seq'::regclass), 'mailer_email', 'sysadmin@localhost', 1)");
+        $conn->executeQuery(" INSERT INTO settings_meta (id, key, value, object_id) VALUES (nextval('settings_meta_id_seq'::regclass), 'mailer_host', 'mailhog', 1)");
+        $conn->executeQuery(" INSERT INTO settings_meta (id, key, value, object_id) VALUES (nextval('settings_meta_id_seq'::regclass), 'mailer_protocol', 'LOCAL', 1)");
     }
 ];
