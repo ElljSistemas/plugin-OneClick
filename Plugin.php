@@ -97,10 +97,8 @@ class Plugin extends \MapasCulturais\Plugin
      * @param Settings $settings 
      * @return void 
      */
-    public function setEmailSettings(\OneClick\Settings $settings): void
+    public function setEmailSettings(\OneClick\Settings $settings, App $app): void
     {
-        $app = App::i();
-
         $app->config['mailer.templates']['email_teste_settings'] = [
             'title' => i::__("{$app->siteName} - Teste de configuração de email"),
             'template' => 'email_teste_settings.html'
