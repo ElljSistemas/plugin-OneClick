@@ -1,6 +1,12 @@
 app.component('configuration-steps', {
     template: $TEMPLATES['configuration-steps'],
 
+    setup() {
+        const text = Utils.getTexts('configuration-steps')
+        const messages = useMessages();
+        return { text, messages }
+    },
+
     computed: {
         settingsId() {
             return $MAPAS.config.oneClick.settingsId
@@ -34,7 +40,24 @@ app.component('configuration-steps', {
 
         return {
             tabGroups,
+            isLoading: false,
+            emailTest: null
         }
     },
-    methods: {}
+    methods: {
+        sendEmailTest() {
+            this.isLoading = true;
+            const api = new API();
+            let url = Utils.createUrl('settings', 'sendMailTest');
+            api.POST(url, { email: this.emailTest }).then(res => res.json()).then(response => {
+                this.isLoading = false;
+                if (response) {
+                    this.emailTest = null;
+                    this.messages.success(this.text('sendEmailTestSuccess'));
+                } else {
+                    this.messages.error(this.text('sendEmailTestError'));
+                }
+            });
+        }
+    }
 });

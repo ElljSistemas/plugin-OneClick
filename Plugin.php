@@ -55,6 +55,17 @@ class Plugin extends \MapasCulturais\Plugin
         $app->hook('<<*>>(<<*>>.<<*>>):before', function () use ($self) {
             $self->oneClickRegisteredMetadata();
         });
+
+        // hook responsável por setar as configurações em seus devidos lugares
+        $app->hook('app.register:after', function () use ($self, $app) {
+            $app->disableAccessControl();
+
+            $settings = $self->getSettings();
+
+            $self->setEmailSettings($settings);
+
+            $app->enableAccessControl();
+        });
     }
 
     /**

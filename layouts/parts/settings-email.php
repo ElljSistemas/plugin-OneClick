@@ -10,6 +10,7 @@ use MapasCulturais\i;
 $this->import('
     entity-field
     oc-dialog
+    oc-popover
  ');
 
 ?>
@@ -22,10 +23,26 @@ $this->import('
         </template>
     </oc-dialog>
     <div class="grid-12">
-        <entity-field :entity="entity" prop="email" class="col-4"></entity-field>
-        <entity-field :entity="entity" prop="port" class="col-4"></entity-field>
-        <entity-field :entity="entity" prop="protocol" class="col-4"></entity-field>
-        <entity-field :entity="entity" prop="password" class="col-6"></entity-field>
-        <entity-field :entity="entity" prop="repassword" class="col-6"></entity-field>
+        <entity-field :entity="entity" prop="mailer_email" class="col-12"></entity-field>
+        <entity-field :entity="entity" prop="mailer_host" class="col-4"></entity-field>
+        <entity-field :entity="entity" prop="mailer_user" class="col-4"></entity-field>
+        <entity-field :entity="entity" prop="mailer_protocol" class="col-4"></entity-field>
+        <entity-field :entity="entity" prop="mailer_password" class="col-6"></entity-field>
+        <entity-field :entity="entity" prop="mailer_repassword" class="col-6"></entity-field>
+        <div class="col-12 email-test">
+            <oc-popover position="left">
+                <template #content>
+                    <mc-loading :condition="isLoading">
+                        <template #default="{ entity }">
+                            <?= i::__('Enviando e-mail, aguarde') ?>
+                        </template>
+                    </mc-loading>
+                    <div v-if="!isLoading" class="field">
+                        <input v-model="emailTest" type="text" class="" autocomplete="off" value="">
+                    </div>
+                    <button v-if="!isLoading" class="button button--primary" :class="{'disabled' : !emailTest}" @click="sendEmailTest()"><span><?= i::__('Enviar') ?></span></button>
+                </template>
+            </oc-popover>
+        </div>
     </div>
 </div>
