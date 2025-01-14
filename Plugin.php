@@ -81,4 +81,18 @@ class Plugin extends \MapasCulturais\Plugin
             $this->registerMetadata('OneClick\\Settings', $key, $cfg);
         }
     }
+
+    /**
+     * @return Settings 
+     */
+    public function getSettings(): Settings
+    {
+        $app = App::i();
+
+        $subsiteId = $app->subsite ? $app->subsite->id : null;
+
+        $settings = $app->repo('OneClick\\Settings')->findOneBy(['subsiteId' => $subsiteId]);
+
+        return $settings;
+    }
 }
