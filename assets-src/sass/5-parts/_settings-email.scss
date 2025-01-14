@@ -1,3 +1,14 @@
 .settings-email {
     width: 100%;
+
+    .email-test {
+        display: flex;
+        justify-content: flex-end;
+        
+        .content {
+            display: flex;
+            gap: 10px;
+            width: 500px;
+        }
+    }
 }
