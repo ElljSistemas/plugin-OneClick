@@ -32,6 +32,10 @@ $this->import('
             <template #email="{tab}">
                 <?php $this->part('settings-email') ?>
             </template>
+
+            <template #recaptcha="{tab}">
+                <?php $this->part('settings-recaptcha') ?>
+            </template>
         </oc-tabs>
     </div>
 

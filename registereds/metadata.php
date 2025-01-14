@@ -57,6 +57,24 @@ $metadata = [
             'required' => \MapasCulturais\i::__("A confirmação da senha é obrigatória")
         ]
     ],
+    // Configurações iniciais - reCaptcha
+    'recaptcha_secret' => [
+        'label' => i::__('Chave secreta'),
+        'type' => 'string',
+        'private' => true,
+        'validations' => [
+            'required' => \MapasCulturais\i::__("A chave secreta é obrigatório")
+        ]
+    ],
+    'recaptcha_sitekey' => [
+        'label' => i::__('Chave do site'),
+        'type' => 'string',
+        'private' => true,
+        'validations' => [
+            'required' => \MapasCulturais\i::__("A chave do site é obrigatório")
+        ]
+    ],
+
 ];
 
 return $metadata;

@@ -62,7 +62,8 @@ class Plugin extends \MapasCulturais\Plugin
 
             $settings = $self->getSettings();
 
-            $self->setEmailSettings($settings);
+            $self->setEmailSettings($settings, $app);
+            $self->setRecaptchaSettings($settings, $app);
 
             $app->enableAccessControl();
         });
@@ -127,6 +128,28 @@ class Plugin extends \MapasCulturais\Plugin
         $app->config['mailer.transport'] = $mailer_trasport;
         $app->config['mailer.from'] = $settings->mailer_email ? $settings->mailer_email : "sysadmin@localhost";
     }
+
+    /**
+     * @param Settings $settings 
+     * @param App $app 
+     * @return void 
+     */
+    public function setRecaptchaSettings(\OneClick\Settings $settings, App $app): void
+    {
+        $auth = [];
+        if ($settings->recaptcha_secret) {
+            $auth['google-recaptcha-secret'] = $settings->recaptcha_secret;
+        }
+
+        if ($settings->recaptcha_sitekey) {
+            $auth['google-recaptcha-sitekey'] = $settings->recaptcha_sitekey;
+        }
+
+        if ($settings->recaptcha_sitekey && $settings->recaptcha_secret) {
+            file_put_contents(__DIR__ . "/files/auth.txt", json_encode($auth));
+        }
+    }
+
 
     /**
      * @return Settings 
