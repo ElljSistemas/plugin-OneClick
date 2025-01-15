@@ -40,8 +40,11 @@
         transition: opacity 0.3s ease, transform 0.3s ease;
 
         .close {
-            font-size: 83px;
-            top: -34px;
+            font-size: 20px;
+            position: absolute;
+            top: 2px;
+            right: 3px;
+            z-index: 1000;
         }
     }
 
