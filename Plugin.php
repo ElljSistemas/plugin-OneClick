@@ -62,8 +62,10 @@ class Plugin extends \MapasCulturais\Plugin
 
             $settings = $self->getSettings();
 
-            $self->setEmailSettings($settings, $app);
-            $self->setRecaptchaSettings($settings, $app);
+            if($settings) {
+                $self->setEmailSettings($settings, $app);
+                $self->setRecaptchaSettings($settings, $app);
+            }
 
             $app->enableAccessControl();
         });
@@ -154,13 +156,15 @@ class Plugin extends \MapasCulturais\Plugin
     /**
      * @return Settings 
      */
-    public function getSettings(): Settings
+    public function getSettings(): ?Settings
     {
         $app = App::i();
 
         $subsiteId = $app->subsite ? $app->subsite->id : null;
 
-        $settings = $app->repo('OneClick\\Settings')->findOneBy(['subsiteId' => $subsiteId]);
+        if(!$settings = $app->repo('OneClick\\Settings')->findOneBy(['subsiteId' => $subsiteId])) {
+            $settings = $app->repo('OneClick\\Settings')->findOneBy(['id' => 1]);
+        }
 
         return $settings;
     }
