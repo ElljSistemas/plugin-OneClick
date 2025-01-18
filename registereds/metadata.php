@@ -74,7 +74,35 @@ $metadata = [
             'required' => \MapasCulturais\i::__("A chave do site é obrigatório")
         ]
     ],
-
+    // Configurações iniciais - Georreferenciamento
+    'geodivisions' => [
+        'label' => i::__('Divisões geográficas'),
+        'type' => 'json',
+    ],
+    'geoDivisionsFilters' => [
+        'label' => i::__('Filtro de unidades federativas'),
+        'type' => 'json',
+    ],
+    'zoom_default' => [
+        'label' => i::__('Zoom padrão do mapa'),
+        'type' => 'text',
+    ],
+    'zoom_max' => [
+        'label' => i::__('Zoom máximo do mapa'),
+        'type' => 'text',
+    ],
+    'zoom_min' => [
+        'label' => i::__('Zoom mínimo do mapa'),
+        'type' => 'text',
+    ],
+    'latitude' => [
+        'label' => i::__('Latitude'),
+        'type' => 'text',
+    ],
+    'longitude' => [
+        'label' => i::__('Longitude'),
+        'type' => 'text',
+    ],
 ];
 
 return $metadata;
