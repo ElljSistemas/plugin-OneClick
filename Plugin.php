@@ -163,9 +163,10 @@ class Plugin extends \MapasCulturais\Plugin
 
             $settings = $self->getSettings();
 
-            if($settings) {
+            if ($settings) {
                 $self->setEmailSettings($settings, $app);
                 $self->setRecaptchaSettings($settings, $app);
+                $self->setGeoSettings($settings, $app);
             }
 
             $app->enableAccessControl();
@@ -198,10 +199,11 @@ class Plugin extends \MapasCulturais\Plugin
     }
 
     /**
-     * @param Settings $settings 
+     * @param null|Settings $settings 
+     * @param App $app 
      * @return void 
      */
-    public function setEmailSettings(\OneClick\Settings $settings, App $app): void
+    public function setEmailSettings(?Settings $settings, App $app): void
     {
         $app->config['mailer.templates']['email_teste_settings'] = [
             'title' => i::__("{$app->siteName} - Teste de configuração de email"),
@@ -233,11 +235,11 @@ class Plugin extends \MapasCulturais\Plugin
     }
 
     /**
-     * @param Settings $settings 
+     * @param null|Settings $settings 
      * @param App $app 
      * @return void 
      */
-    public function setRecaptchaSettings(\OneClick\Settings $settings, App $app): void
+    public function setRecaptchaSettings(?Settings $settings, App $app): void
     {
         $auth = [];
         if ($settings->recaptcha_secret) {
@@ -253,6 +255,49 @@ class Plugin extends \MapasCulturais\Plugin
         }
     }
 
+    /**
+     * @param null|Settings $settings 
+     * @param App $app 
+     * @return void 
+     */
+    public function setGeoSettings(?Settings $settings, App $app): void
+    {
+        if ($values = $settings->geoDivisionsFilters) {
+            $geoDivisionsFilters = [];
+            $fromTo = $this->getFromToGeoFilters();
+            foreach ($values as $value) {
+                $geoDivisionsFilters[] = $fromTo[$value];
+            }
+
+            $app->config['app.geoDivisionsFilters'] = $geoDivisionsFilters;
+        }
+
+        if ($values = $settings->geodivisions) {
+            $geoDivisionsHierarchy = $this->getFromToGeoDivisionsHierarchy();
+            foreach ($values as $value) {
+                $name = $geoDivisionsHierarchy[$value];
+                $app->config['app.geoDivisionsFilters'][$value] = ['name' => $name, 'showLayer' => true];
+            }
+        }
+
+        if ($settings->zoom_default) {
+            $app->config['maps.zoom.default'] = $settings->zoom_default;
+        }
+
+        if ($settings->zoom_max) {
+            $app->config['maps.zoom.max'] = $settings->zoom_max;
+        }
+
+        if ($settings->zoom_min) {
+            $app->config['maps.zoom.min'] = $settings->zoom_min;
+        }
+
+        if ($settings->latitude && $settings->longitude) {
+            $app->config['maps.center'] = [$settings->latitude, $settings->longitude];
+        }
+    }
+
+
 
     /**
      * @return Settings 
@@ -263,10 +308,62 @@ class Plugin extends \MapasCulturais\Plugin
 
         $subsiteId = $app->subsite ? $app->subsite->id : null;
 
-        if(!$settings = $app->repo('OneClick\\Settings')->findOneBy(['subsiteId' => $subsiteId])) {
+        if (!$settings = $app->repo('OneClick\\Settings')->findOneBy(['subsiteId' => $subsiteId])) {
             $settings = $app->repo('OneClick\\Settings')->findOneBy(['id' => 1]);
         }
 
         return $settings;
+    }
+
+    /**
+     * @return array 
+     */
+    public function getFromToGeoFilters(): array
+    {
+        return [
+            'AC' => 12,
+            'AL' => 27,
+            'AM' => 13,
+            'AP' => 16,
+            'BA' => 29,
+            'CE' => 23,
+            'DF' => 53,
+            'ES' => 32,
+            'GO' => 52,
+            'MA' => 21,
+            'MG' => 31,
+            'MS' => 50,
+            'MT' => 51,
+            'PA' => 15,
+            'PB' => 25,
+            'PE' => 26,
+            'PI' => 22,
+            'PR' => 41,
+            'RJ' => 33,
+            'RN' => 24,
+            'RS' => 43,
+            'RO' => 11,
+            'RR' => 14,
+            'SC' => 42,
+            'SE' => 28,
+            'SP' => 35,
+            'TO' => 17
+        ];
+    }
+
+    public function getFromToGeoDivisionsHierarchy(): array
+    {
+        return [
+            'pais' => i::__('País'),
+            'regiao' => i::__('Região'),
+            'estado' => i::__('Estado'),
+            'mesorregiao' => i::__('Mesorregião'),
+            'microrregiao'     => i::__('Microrregião'),
+            'municipio' => i::__('Município'),
+            'zona' => i::__('Zona'),
+            'subprefeitura' => i::__('Subprefeitura'),
+            'distrito' => i::__('Distrito'),
+            'setor_censitario' => i::__('Setor Censitario')
+        ];
     }
 }

@@ -36,6 +36,10 @@ $this->import('
             <template #recaptcha="{tab}">
                 <?php $this->part('settings-recaptcha') ?>
             </template>
+
+            <template #georreferenciamento>
+                <?php $this->part('settings-georeferencing') ?>
+            </template>
         </oc-tabs>
     </div>
 

@@ -4,7 +4,7 @@ app.component('oc-dialog', {
     props: {},
     data() {
         return {
-            toggle: true
+            toggle: false
         }
     },
     methods: {

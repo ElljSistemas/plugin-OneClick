@@ -5,6 +5,7 @@
  * @var MapasCulturais\Themes\BaseV2\Theme $this
  */
 
+$app = \MapasCulturais\App::i();
 $settings_id = 1;
 if ($subsite = $app->subsite) {
     if($active_settings = $app->repo('OneClick\\Settings')->findOneBy(['subsiteId' => $subsite->id])) {
