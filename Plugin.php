@@ -25,6 +25,107 @@ class Plugin extends \MapasCulturais\Plugin
 
         $self = $this;
 
+
+        if (!$app->repo('DbUpdate')->findBy(['name' => 'create table settings sequence'])) {
+            $em = $app->em;
+            $conn = $em->getConnection();
+        
+            // Verificar se a sequência 'oc_settings_id_seq' já existe
+            $sequenceExists = $conn->fetchOne("
+                SELECT COUNT(*) 
+                FROM pg_class c 
+                JOIN pg_namespace n ON n.oid = c.relnamespace 
+                WHERE c.relkind = 'S' AND c.relname = 'oc_settings_id_seq'
+            ");
+            if ($sequenceExists == 0) {
+                $conn->executeQuery("CREATE SEQUENCE oc_settings_id_seq INCREMENT BY 1 MINVALUE 1 START 1");
+            }
+        
+            // Verificar se a sequência 'settings_meta_id_seq' já existe
+            $sequenceExists = $conn->fetchOne("
+                SELECT COUNT(*) 
+                FROM pg_class c 
+                JOIN pg_namespace n ON n.oid = c.relnamespace 
+                WHERE c.relkind = 'S' AND c.relname = 'settings_meta_id_seq'
+            ");
+            if ($sequenceExists == 0) {
+                $conn->executeQuery("CREATE SEQUENCE settings_meta_id_seq INCREMENT BY 1 MINVALUE 1 START 1");
+            }
+        
+            $app->disableAccessControl();
+            $db_update = new \MapasCulturais\Entities\DbUpdate;
+            $db_update->name = 'create table settings sequence';
+            $db_update->save(true);
+            $app->enableAccessControl();
+            $conn->commit();
+        }
+        
+        if (!$app->repo('DbUpdate')->findBy(['name' => 'create table settings'])) {
+            $em = $app->em;
+            $conn = $em->getConnection();
+        
+            // Verificar se a tabela 'settings' já existe
+            $tableExists = $conn->fetchOne("
+                SELECT COUNT(*) 
+                FROM information_schema.tables 
+                WHERE table_name = 'settings'
+            ");
+            if ($tableExists == 0) {
+                $conn->executeQuery("
+                    CREATE TABLE settings (
+                        id INT NOT NULL, 
+                        status SMALLINT NOT NULL, 
+                        metadata JSON DEFAULT '{}' NOT NULL, 
+                        create_timestamp TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, 
+                        update_timestamp TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, 
+                        subsite_id SMALLINT NULL, 
+                    PRIMARY KEY(id))
+                ");
+            }
+        
+            // Verificar se a tabela 'settings_meta' já existe
+            $tableExists = $conn->fetchOne("
+                SELECT COUNT(*) 
+                FROM information_schema.tables 
+                WHERE table_name = 'settings_meta'
+            ");
+            if ($tableExists == 0) {
+                $conn->executeQuery("
+                    CREATE TABLE settings_meta (
+                        object_id integer NOT NULL,
+                        key character varying(32) NOT NULL,
+                        value text,
+                        id integer NOT NULL
+                    );
+                ");
+            }
+        
+            $app->disableAccessControl();
+            $db_update = new \MapasCulturais\Entities\DbUpdate;
+            $db_update->name = 'create table settings';
+            $db_update->save(true);
+            $app->enableAccessControl();
+            $conn->commit();
+        }
+        
+        if (!$app->repo('DbUpdate')->findBy(['name' => 'inserts default settings'])) {
+            $em = $app->em;
+            $conn = $em->getConnection();
+        
+            $conn->executeQuery("INSERT INTO settings_meta (id, key, value, object_id) VALUES (nextval('settings_meta_id_seq'::regclass), 'mailer_email', 'sysadmin@localhost', 1)");
+            $conn->executeQuery("INSERT INTO settings_meta (id, key, value, object_id) VALUES (nextval('settings_meta_id_seq'::regclass), 'mailer_host', 'mailhog', 1)");
+            $conn->executeQuery("INSERT INTO settings_meta (id, key, value, object_id) VALUES (nextval('settings_meta_id_seq'::regclass), 'mailer_protocol', 'LOCAL', 1)");
+            $conn->executeQuery("INSERT INTO settings (id, status, metadata, create_timestamp, update_timestamp, subsite_id) VALUES (nextval('oc_settings_id_seq'::regclass), 1, '{}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null)");
+        
+            $app->disableAccessControl();
+            $db_update = new \MapasCulturais\Entities\DbUpdate;
+            $db_update->name = 'inserts default settings';
+            $db_update->save(true);
+            $app->enableAccessControl();
+            $conn->commit();
+        }
+        
+
         $app->view->enqueueStyle('app-v2', 'OneClick-v2', 'css/plugin-OneClick.css');
 
         $driver = $app->em->getConfiguration()->getMetadataDriverImpl();
