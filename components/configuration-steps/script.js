@@ -15,10 +15,10 @@ app.component('configuration-steps', {
     data() {
         let tabGroups = {
             'settings': [
-                { label: 'Email', isActive: false, submenu: [], ref: "email" },
+                { label: 'Email', isActive: true, submenu: [], ref: "email" },
                 { label: 'reCaptcha', isActive: false, submenu: [], ref: "recaptcha" },
                 { label: 'Georreferenciamento', isActive: false, submenu: [], ref: "georeferencing" },
-                { label: 'Redes sociais', isActive: true, submenu: [], ref: "socialmedia" },
+                { label: 'Redes sociais', isActive: false, submenu: [], ref: "socialmedia" },
             ],
             'text-image': [
                 { label: 'Banner', isActive: true, submenu: [], ref: "banner" },
