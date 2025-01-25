@@ -157,6 +157,17 @@ class Plugin extends \MapasCulturais\Plugin
             $iconset['one-click-colors-sharp'] = "material-symbols:colors-sharp";
             $iconset['one-click-dialog'] = 'wpf:ask-question';
             $iconset['one-click-close-rounded'] = 'material-symbols:close-rounded';
+
+            $iconset['one-click-facebook'] = 'mdi:facebook';
+            $iconset['one-click-instagram'] = 'mdi:instagram';
+            $iconset['one-click-linkedin'] = 'mdi:linkedin';
+            $iconset['one-click-pinterest'] = 'mdi:pinterest';
+            $iconset['one-click-spotify'] = 'mdi:spotify';
+            $iconset['one-click-tiktok'] = 'mdi:tiktok';
+            $iconset['one-click-x'] = 'mdi:twitter';
+            $iconset['one-click-vimeo'] = 'mdi:vimeo';
+            $iconset['one-click-youtube'] = 'mdi:youtube';
+
         });
 
         // Garante o registro de metadados em todas as requisições
@@ -174,10 +185,22 @@ class Plugin extends \MapasCulturais\Plugin
                 $self->setEmailSettings($settings, $app);
                 $self->setRecaptchaSettings($settings, $app);
                 $self->setGeoSettings($settings, $app);
+                $self->setSocialMedia($settings, $app);
+
+               
             }
+            
 
             $app->enableAccessControl();
         });
+       
+
+        $app->hook('app.init:after', function () use ($self, $app)  {
+            $settings = $self->getSettings();
+            if ($settings) {
+            }
+         });
+
     }
 
     /**
@@ -304,6 +327,19 @@ class Plugin extends \MapasCulturais\Plugin
         }
     }
 
+    public function setSocialMedia(?Settings $settings, App $app)
+    {
+        if ($settings->socialmediaData) {
+            $socialMedia = (array) $settings->socialmediaData;
+            foreach ($socialMedia as $metadata => $link) {
+                $app->config['social-media'][$metadata] = [
+                    'icon' => $metadata,
+                    'link' => $link
+                ];
+            }
+        }
+    }
+    
 
 
     /**
@@ -358,6 +394,9 @@ class Plugin extends \MapasCulturais\Plugin
         ];
     }
 
+    /**
+     * @return array 
+     */
     public function getFromToGeoDivisionsHierarchy(): array
     {
         return [
@@ -373,4 +412,26 @@ class Plugin extends \MapasCulturais\Plugin
             'setor_censitario' => i::__('Setor Censitario')
         ];
     }
+
+    /**
+     * @param string $metadata 
+     * @return string 
+     */
+    public function socialmediaLabels(string $metadata): string
+    {
+        $from_to = [
+            'facebook' => 'Facebook',
+            'instagram' => 'Instagram',
+            'linkedin' => 'Linkedin',
+            'pinterest' => 'Pinterest',
+            'spotify' => 'Spotify',
+            'tiktok' => 'Tiktok',
+            'twitter' => 'X Twitter',
+            'vimeo' => 'Vimeo',
+            'youtube' => 'Youtube'
+        ];
+
+        return $from_to[$metadata];
+    }
+    
 }

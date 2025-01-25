@@ -37,8 +37,12 @@ $this->import('
                 <?php $this->part('settings-recaptcha') ?>
             </template>
 
-            <template #georreferenciamento>
+            <template #georeferencing>
                 <?php $this->part('settings-georeferencing') ?>
+            </template>
+
+            <template #socialmedia>
+                <?php $this->part('settings-socialmedia') ?>
             </template>
         </oc-tabs>
     </div>

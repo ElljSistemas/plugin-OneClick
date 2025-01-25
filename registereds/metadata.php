@@ -103,6 +103,15 @@ $metadata = [
         'label' => i::__('Longitude'),
         'type' => 'text',
     ],
+    // Redes sociais
+    'socialmedia' => [
+        'label' => i::__('Redes sociais'),
+        'type' => 'json',
+    ],
+    'socialmediaData' => [
+        'label' => i::__('Redes sociais configuradas'),
+        'type' => 'json',
+    ],
 ];
 
 return $metadata;
