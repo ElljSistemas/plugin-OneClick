@@ -45,6 +45,7 @@ app.component('oc-tabs', {
                 this.actioveOption = null;
 
                 if (item.ref === ref) {
+                    window.dispatchEvent(new CustomEvent('useActions', { detail: { useActions: item.useActions } }));
                     item.isActive = true;
                     this.actioveOption = ref
                 }
