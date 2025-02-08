@@ -327,7 +327,12 @@ class Plugin extends \MapasCulturais\Plugin
         }
     }
 
-    public function setSocialMedia(?Settings $settings, App $app)
+    /**
+     * @param null|Settings $settings 
+     * @param App $app 
+     * @return void 
+     */
+    public function setSocialMedia(?Settings $settings, App $app): void
     {
         if ($settings->socialmediaData) {
             $socialMedia = (array) $settings->socialmediaData;
