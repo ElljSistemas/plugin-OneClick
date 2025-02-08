@@ -167,6 +167,7 @@ class Plugin extends \MapasCulturais\Plugin
             $iconset['one-click-x'] = 'mdi:twitter';
             $iconset['one-click-vimeo'] = 'mdi:vimeo';
             $iconset['one-click-youtube'] = 'mdi:youtube';
+            $iconset['one-click-upload'] = 'et:upload';
 
         });
 
