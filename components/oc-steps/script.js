@@ -10,9 +10,9 @@ app.component('oc-steps', {
         return {
             stepActive: 'settings',
             steps: [
-                { label: 'Configurações iniciais', icons: ["one-click-settings"], isActive: true, ref: 'settings' },
-                { label: 'Textos e imagens', icons: ["one-click-text-outline", 'one-click-image'], isActive: false, ref: 'text-image' },
-                { label: 'Cores', icons: ["one-click-colors-sharp"], isActive: false, ref: 'colors' },
+                { label: 'Configurações iniciais', icons: ["one-click-settings"], isActive: true, ref: 'settings', useActions: true },
+                { label: 'Textos e imagens', icons: ["one-click-text-outline", 'one-click-image'], isActive: false, ref: 'text-image', useActions: true },
+                { label: 'Cores', icons: ["one-click-colors-sharp"], isActive: false, ref: 'colors', useActions: true },
             ]
         }
     },
