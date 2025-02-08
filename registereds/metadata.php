@@ -112,6 +112,11 @@ $metadata = [
         'label' => i::__('Redes sociais configuradas'),
         'type' => 'json',
     ],
+    // Textos e imagens
+    'bannerImageData' => [
+        'label' => i::__('imagem Banner home'),
+        'type' => 'json',
+    ],
 ];
 
 return $metadata;
