@@ -188,6 +188,7 @@ class Plugin extends \MapasCulturais\Plugin
                 $self->setGeoSettings($settings, $app);
                 $self->setSocialMedia($settings, $app);
                 $self->setImagesHome($settings, $app);
+                $self->setTextsHome($settings, $app);
             }
             
 
@@ -351,6 +352,22 @@ class Plugin extends \MapasCulturais\Plugin
             $app->view->jsObject['config']['oneClickUploads'] = [
                'home-header' => $app->view->asset("img/home/{$file}", false)
             ];
+        }
+    }
+
+    /**
+     * @param null|Settings $settings 
+     * @param App $app 
+     * @return void 
+     */
+    public function setTextsHome(?Settings $settings, App $app)
+    {
+        if($bannerTitle = $settings->bannerTitle) {
+            $app->config['text:home-header.title'] = $bannerTitle;
+        }
+
+        if($bannerDescription = $settings->bannerDescription) {
+            $app->config['text:home-header.description'] = $bannerDescription;
         }
     }
 

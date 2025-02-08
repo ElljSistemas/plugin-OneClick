@@ -117,6 +117,14 @@ $metadata = [
         'label' => i::__('imagem Banner home'),
         'type' => 'json',
     ],
+    'bannerTitle' => [
+        'label' => i::__('Título'),
+        'type' => 'text',
+    ],
+    'bannerDescription' => [
+        'label' => i::__('Texto com, no máximo, 600 caracteres.'),
+        'type' => 'textarea',
+    ],
 ];
 
 return $metadata;

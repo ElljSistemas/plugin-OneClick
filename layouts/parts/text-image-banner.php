@@ -12,11 +12,28 @@ $this->import('
     oc-upload
     mc-image-uploader
     mc-alert
+    entity-field
 ');
 ?>
 
 <div class="text-image-banner">
+
     <oc-text-image :entity="entity" slug="banner">
+        <template #banner-text="{tab, entity}">
+            <div>
+                <oc-dialog>
+                    <template #content>
+                        <?= i::__('Configure aqui os textos e imagens exibidos na página inicial do Mapas. A configuração está organizada por seções, facilitando a identificação de onde cada elemento será exibido.') ?>
+                        <?= i::__('Cada seção contém áreas específicas para ajustar o texto e, quando aplicável, a imagem correspondente.') ?>
+                    </template>
+                </oc-dialog>
+
+                <div class="grid-12">
+                    <entity-field :entity="entity" prop="bannerTitle" class="col-12"></entity-field>
+                    <entity-field :entity="entity" prop="bannerDescription" class="col-12" :maxLength="600"></entity-field>
+                </div>
+            </div>
+        </template>
         <template #banner-image="{tab, entity}">
             <div class="upload-area">
                 <oc-dialog>
