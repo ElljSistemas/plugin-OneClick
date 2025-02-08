@@ -2,15 +2,18 @@
 
 namespace OneClick;
 
-use InvalidArgumentException;
+use DateTime;
 use Exception;
+use Throwable;
+use TypeError;
+use RuntimeException;
 use \MapasCulturais\App;
-use MapasCulturais\Exceptions\MailTemplateNotFound;
+use InvalidArgumentException;
 use MapasCulturais\Exceptions\NotFound;
 use MapasCulturais\Traits\ControllerAPI;
-use RuntimeException;
-use TypeError;
-use Throwable;
+use MapasCulturais\Exceptions\MailTemplateNotFound;
+use MapasCulturais\Exceptions\PermissionDenied;
+use MapasCulturais\Exceptions\WorkflowRequest;
 
 class Controller  extends \MapasCulturais\Controllers\EntityController
 {
