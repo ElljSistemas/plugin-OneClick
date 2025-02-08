@@ -1,14 +1,22 @@
 app.component('oc-actions', {
     template: $TEMPLATES['oc-actions'],
-
+    mounted() {
+        window.addEventListener('useActions', this.changeUseActions);
+    },
     props: {
-         entity: {
+        entity: {
             type: Entity,
             required: true
         }
     },
     data() {
-        return {}
+        return {
+            useActions: true
+        }
     },
-    methods: { }
+    methods: {
+        changeUseActions(data) {
+            this.useActions = data.detail.useActions;
+        }
+    }
 });
