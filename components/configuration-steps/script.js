@@ -15,18 +15,18 @@ app.component('configuration-steps', {
     data() {
         let tabGroups = {
             'settings': [
-                { label: 'Email', isActive: true, submenu: [], ref: "email" },
-                { label: 'reCaptcha', isActive: false, submenu: [], ref: "recaptcha" },
-                { label: 'Georreferenciamento', isActive: false, submenu: [], ref: "georeferencing" },
-                { label: 'Redes sociais', isActive: false, submenu: [], ref: "socialmedia" },
+                { label: 'Email', isActive: false, submenu: [], ref: "email", useActions: true },
+                { label: 'reCaptcha', isActive: false, submenu: [], ref: "recaptcha", useActions: true },
+                { label: 'Georreferenciamento', isActive: false, submenu: [], ref: "georeferencing", useActions: true },
+                { label: 'Redes sociais', isActive: false, submenu: [], ref: "socialmedia", useActions: true },
             ],
             'text-image': [
-                { label: 'Banner', isActive: true, submenu: [], ref: "banner" },
-                { label: 'Entidades', isActive: false, submenu: [] },
-                { label: 'Em destaque', isActive: false, submenu: [], ref: "emdestaque" },
-                { label: 'Cadastre-se', isActive: false, submenu: [], ref: "cadastrese" },
-                { label: 'Mapa', isActive: false, submenu: [], ref: "mapa" },
-                { label: 'Desenvolvedor', isActive: false, submenu: [], ref: "desenvolvedores" },
+                { label: 'Banner', isActive: true, submenu: [], ref: "banner", useActions: true },
+                { label: 'Entidades', isActive: false, submenu: [], useActions: true },
+                { label: 'Em destaque', isActive: false, submenu: [], ref: "emdestaque", useActions: true },
+                { label: 'Cadastre-se', isActive: false, submenu: [], ref: "cadastrese", useActions: true },
+                { label: 'Mapa', isActive: false, submenu: [], ref: "mapa", useActions: true },
+                { label: 'Desenvolvedor', isActive: false, submenu: [], ref: "desenvolvedores", useActions: true },
             ],
         }
 
