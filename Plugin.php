@@ -186,20 +186,12 @@ class Plugin extends \MapasCulturais\Plugin
                 $self->setRecaptchaSettings($settings, $app);
                 $self->setGeoSettings($settings, $app);
                 $self->setSocialMedia($settings, $app);
-
-               
+                $self->setImagesHome($settings, $app);
             }
             
 
             $app->enableAccessControl();
         });
-       
-
-        $app->hook('app.init:after', function () use ($self, $app)  {
-            $settings = $self->getSettings();
-            if ($settings) {
-            }
-         });
 
     }
 
@@ -344,8 +336,22 @@ class Plugin extends \MapasCulturais\Plugin
             }
         }
     }
-    
 
+    /**
+     * @param null|Settings $settings 
+     * @param App $app 
+     * @return void 
+     */
+    public function setImagesHome(?Settings $settings, App $app)
+    {
+        if($bannerImageData = $settings->bannerImageData) {
+            $file =   basename($bannerImageData->path);
+            $app->config['module.home']['home-header'] = "img/home/{$file}";
+            $app->view->jsObject['config']['oneClickUploads'] = [
+               'home-header' => $app->view->asset("img/home/{$file}", false)
+            ];
+        }
+    }
 
     /**
      * @return Settings 
