@@ -44,6 +44,10 @@ $this->import('
             <template #socialmedia>
                 <?php $this->part('settings-socialmedia') ?>
             </template>
+
+            <template #banner>
+                <?php $this->part('text-image-banner') ?>
+            </template>
         </oc-tabs>
     </div>
 
