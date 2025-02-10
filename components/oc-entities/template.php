@@ -18,7 +18,7 @@ $this->import('
     <oc-tabs :entity="entity" :groups="tabGroups" initial-group="tabs">
 
         <template #entitiesSection="{tab, entity}">
-            <?php $this->part('text-image-entities--entities') ?>
+            <?php $this->part('text-image-entities--section') ?>
         </template>
 
         <template #opportunity="{tab}">

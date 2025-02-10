@@ -127,7 +127,7 @@ $metadata = [
     ],
     // Textos e imagens da seção entidades
     'entitiesTitle' => [
-        'label' => i::__('Título da seção de entidades na página inicial, com limite de 110 caracteres.'),
+        'label' => i::__('Título da seção de entidades na página inicial, com limite de 65 caracteres.'),
         'type' => 'text',
     ],
     'entitiesDescription' => [
@@ -171,7 +171,7 @@ $metadata = [
         'type' => 'json',
     ],
      // Entidade projetos
-     'entityProjectDescription' => [
+    'entityProjectDescription' => [
         'label' => i::__('Texto com, no máximo, 600 caracteres.'),
         'type' => 'textarea',
     ],
