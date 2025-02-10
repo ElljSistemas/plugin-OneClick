@@ -16,6 +16,11 @@ $this->import('
 
 <div class="oc-entities">
     <oc-tabs :entity="entity" :groups="tabGroups" initial-group="tabs">
+
+        <template #entitiesSection="{tab, entity}">
+            <?php $this->part('text-image-entities--entities') ?>
+        </template>
+
         <template #opportunity="{tab}">
             <div class="entities-tabs"></div>
 

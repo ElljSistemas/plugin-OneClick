@@ -382,6 +382,14 @@ class Plugin extends \MapasCulturais\Plugin
         if($entityOpportunityDescription = $settings->entityOpportunityDescription) {
             $app->config['text:home-entities.opportunities'] = $entityOpportunityDescription;
         }
+
+        if($entitiesTitle = $settings->entitiesTitle) {
+            $app->config['text:home-entities.title'] = $entitiesTitle;
+        }
+
+        if($entitiesDescription = $settings->entitiesDescription) {
+            $app->config['text:home-entities.description'] = $entitiesDescription;
+        }
     }
 
     /**

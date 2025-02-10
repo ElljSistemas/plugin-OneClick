@@ -125,7 +125,16 @@ $metadata = [
         'label' => i::__('Texto com, no máximo, 600 caracteres.'),
         'type' => 'textarea',
     ],
-    // Textos e imagens entidades [opportunity]
+    // Textos e imagens da seção entidades
+    'entitiesTitle' => [
+        'label' => i::__('Título da seção de entidades na página inicial, com limite de 110 caracteres.'),
+        'type' => 'text',
+    ],
+    'entitiesDescription' => [
+        'label' => i::__('Descrição da seção de entidades na página inicial, com limite de 250 caracteres.'),
+        'type' => 'textarea',
+    ],
+    // Entidade opportunity
     'entityOpportunityDescription' => [
         'label' => i::__('Texto com, no máximo, 600 caracteres.'),
         'type' => 'textarea',
