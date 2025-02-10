@@ -201,6 +201,15 @@ $metadata = [
         'label' => i::__('Descrição da seção de Casdastre-se na página inicial, com limite de 300 caracteres.'),
         'type' => 'textarea',
     ],
+     // Mapa
+     'mapTitle' => [
+        'label' => i::__('Título da seção Mapa na página inicial, com limite de 65 caracteres.'),
+        'type' => 'text',
+    ],
+    'mapDescription' => [
+        'label' => i::__('Descrição da seção Mapa na página inicial, com limite de 250 caracteres.'),
+        'type' => 'textarea',
+    ],
 ];
 
 return $metadata;

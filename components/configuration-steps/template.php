@@ -60,6 +60,10 @@ $this->import('
             <template #register>
                 <?php $this->part('text-image-register') ?>
             </template>
+
+            <template #map>
+                <?php $this->part('text-image-map') ?>
+            </template>
         </oc-tabs>
     </div>
 
