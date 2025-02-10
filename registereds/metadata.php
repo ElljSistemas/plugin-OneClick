@@ -152,6 +152,15 @@ $metadata = [
         'label' => i::__('imagem da entidade evento na home'),
         'type' => 'json',
     ],
+    // Entidade espaços
+    'entitySpaceDescription' => [
+        'label' => i::__('Texto com, no máximo, 600 caracteres.'),
+        'type' => 'textarea',
+    ],
+    'entitiesSpaceImageData' => [
+        'label' => i::__('imagem da entidade espaços na home'),
+        'type' => 'json',
+    ],
 ];
 
 return $metadata;
