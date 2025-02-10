@@ -346,43 +346,48 @@ class Plugin extends \MapasCulturais\Plugin
      */
     public function setImagesHome(?Settings $settings, App $app)
     {
-        $banner_ile = null;
+        $public_banner_url = null;
         if($bannerImageData = $settings->bannerImageData) {
             $banner_ile =   basename($bannerImageData->path);
             $app->config['module.home']['home-header'] = "img/home/{$banner_ile}";
+            $public_banner_url = $app->view->asset("img/home/{$banner_ile}", false);
         }
         
-        $entities_opportunity_file = null;
+        $public_opportunity_url = null;
         if($entitiesOpportunityImageData = $settings->entitiesOpportunityImageData) {
             $entities_opportunity_file =   basename($entitiesOpportunityImageData->path);
             $app->config['module.home']['home-opportunities'] = "img/home/{$entities_opportunity_file}";
+            $public_opportunity_url = $app->view->asset("img/home/{$entities_opportunity_file}", false);
         }
 
-        $entities_event_file = null;
+        $public_event_url = null;
         if($entitiesEventImageData = $settings->entitiesEventImageData) {
             $entities_event_file =   basename($entitiesEventImageData->path);
             $app->config['module.home']['home-events'] = "img/home/{$entities_event_file}";
+            $public_event_url = $app->view->asset("img/home/{$entities_event_file}", false);
         }
 
-        $entities_space_file = null;
+        $public_space_url = null;
         if($entitiesSpaceImageData = $settings->entitiesSpaceImageData) {
             $entities_space_file =   basename($entitiesSpaceImageData->path);
             $app->config['module.home']['home-spaces'] = "img/home/{$entities_space_file}";
+            $public_space_url = $app->view->asset("img/home/{$entities_space_file}", false);
         }
 
-        $entities_agent_file = null;
+        $public_agent_url = null;
         if($entitiesAgentImageData = $settings->entitiesAgentImageData) {
             $entities_agent_file =   basename($entitiesAgentImageData->path);
             $app->config['module.home']['home-agents'] = "img/home/{$entities_agent_file}";
+            $public_agent_url = $app->view->asset("img/home/{$entities_agent_file}", false);
         }
 
         $app->view->jsObject['config']['oneClickUploads'] = [
-            'home-header' => $app->view->asset("img/home/{$banner_ile}", false),
-            'home-opportunities' => $app->view->asset("img/home/{$entities_opportunity_file}", false),
-            'home-events' => $app->view->asset("img/home/{$entities_event_file}", false),
-            'home-space' => $app->view->asset("img/home/{$entities_space_file}", false),
-            'home-agents' => $app->view->asset("img/home/{$entities_agent_file}", false),
-         ];
+            'home-header' => $public_banner_url,
+            'home-opportunities' => $public_opportunity_url,
+            'home-events' => $public_event_url,
+            'home-spaces' => $public_space_url,
+            'home-agents' => $public_agent_url,
+        ];
     }
 
     /**
