@@ -179,6 +179,15 @@ $metadata = [
         'label' => i::__('imagem da entidade projetos na home'),
         'type' => 'json',
     ],
+     // Em destaque
+    'featureTitle' => [
+        'label' => i::__('Título da seção de Em destaque na página inicial, com limite de 65 caracteres.'),
+        'type' => 'text',
+    ],
+    'featureDescription' => [
+        'label' => i::__('Descrição da seção de Em destaque na página inicial, com limite de 250 caracteres.'),
+        'type' => 'textarea',
+    ],
 ];
 
 return $metadata;
