@@ -143,6 +143,15 @@ $metadata = [
         'label' => i::__('imagem da entidade oportunidade na home'),
         'type' => 'json',
     ],
+     // Entidade eventos
+     'entityEventDescription' => [
+        'label' => i::__('Texto com, no máximo, 600 caracteres.'),
+        'type' => 'textarea',
+    ],
+    'entitiesEventImageData' => [
+        'label' => i::__('imagem da entidade evento na home'),
+        'type' => 'json',
+    ],
 ];
 
 return $metadata;

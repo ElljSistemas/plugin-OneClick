@@ -165,6 +165,7 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
         return [
             'home-header' => 'bannerImageData',
             'home-opportunities' => 'entitiesOpportunityImageData',
+            'home-events' => 'entitiesEventImageData',
         ];
     }
 }

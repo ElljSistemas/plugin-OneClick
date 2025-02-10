@@ -358,9 +358,16 @@ class Plugin extends \MapasCulturais\Plugin
             $app->config['module.home']['home-opportunities'] = "img/home/{$entities_opportunity_file}";
         }
 
+        $entities_event_file = null;
+        if($entitiesEventImageData = $settings->entitiesEventImageData) {
+            $entities_event_file =   basename($entitiesEventImageData->path);
+            $app->config['module.home']['home-events'] = "img/home/{$entities_event_file}";
+        }
+
         $app->view->jsObject['config']['oneClickUploads'] = [
             'home-header' => $app->view->asset("img/home/{$banner_ile}", false),
             'home-opportunities' => $app->view->asset("img/home/{$entities_opportunity_file}", false),
+            'home-events' => $app->view->asset("img/home/{$entities_event_file}", false),
          ];
     }
 
@@ -375,6 +382,14 @@ class Plugin extends \MapasCulturais\Plugin
             $app->config['text:home-header.title'] = $bannerTitle;
         }
 
+        if($entitiesTitle = $settings->entitiesTitle) {
+            $app->config['text:home-entities.title'] = $entitiesTitle;
+        }
+
+        if($entitiesDescription = $settings->entitiesDescription) {
+            $app->config['text:home-entities.description'] = $entitiesDescription;
+        }
+
         if($bannerDescription = $settings->bannerDescription) {
             $app->config['text:home-header.description'] = $bannerDescription;
         }
@@ -383,12 +398,8 @@ class Plugin extends \MapasCulturais\Plugin
             $app->config['text:home-entities.opportunities'] = $entityOpportunityDescription;
         }
 
-        if($entitiesTitle = $settings->entitiesTitle) {
-            $app->config['text:home-entities.title'] = $entitiesTitle;
-        }
-
-        if($entitiesDescription = $settings->entitiesDescription) {
-            $app->config['text:home-entities.description'] = $entitiesDescription;
+        if($entityEventDescription = $settings->entityEventDescription) {
+            $app->config['text:home-entities.events'] = $entityEventDescription;
         }
     }
 
