@@ -346,13 +346,22 @@ class Plugin extends \MapasCulturais\Plugin
      */
     public function setImagesHome(?Settings $settings, App $app)
     {
+        $banner_ile = null;
         if($bannerImageData = $settings->bannerImageData) {
-            $file =   basename($bannerImageData->path);
-            $app->config['module.home']['home-header'] = "img/home/{$file}";
-            $app->view->jsObject['config']['oneClickUploads'] = [
-               'home-header' => $app->view->asset("img/home/{$file}", false)
-            ];
+            $banner_ile =   basename($bannerImageData->path);
+            $app->config['module.home']['home-header'] = "img/home/{$banner_ile}";
         }
+        
+        $entities_opportunity_file = null;
+        if($entitiesOpportunityImageData = $settings->entitiesOpportunityImageData) {
+            $entities_opportunity_file =   basename($entitiesOpportunityImageData->path);
+            $app->config['module.home']['home-opportunities'] = "img/home/{$entities_opportunity_file}";
+        }
+
+        $app->view->jsObject['config']['oneClickUploads'] = [
+            'home-header' => $app->view->asset("img/home/{$banner_ile}", false),
+            'home-opportunities' => $app->view->asset("img/home/{$entities_opportunity_file}", false),
+         ];
     }
 
     /**
