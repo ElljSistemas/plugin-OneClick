@@ -26,7 +26,7 @@ app.component('configuration-steps', {
                 { label: 'Em destaque', isActive: false, submenu: [], ref: "feature", useActions: true },
                 { label: 'Cadastre-se', isActive: false, submenu: [], ref: "register", useActions: true },
                 { label: 'Mapa', isActive: false, submenu: [], ref: "map", useActions: true },
-                { label: 'Desenvolvedor', isActive: false, submenu: [], ref: "desenvolvedores", useActions: true },
+                { label: 'Desenvolvedores', isActive: false, submenu: [], ref: "developer", useActions: true },
             ],
         }
 

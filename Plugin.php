@@ -472,6 +472,14 @@ class Plugin extends \MapasCulturais\Plugin
         if($mapDescription = $settings->mapDescription) {
             $app->config['text:home-map.description'] = $mapDescription;
         }
+
+        if($developerTitle = $settings->developerTitle) {
+            $app->config['text:home-developers.title'] = $developerTitle;
+        }
+
+        if($developDescription = $settings->developerDescription) {
+            $app->config['text:home-developers.description'] = $developDescription;
+        }
     }
 
     /**

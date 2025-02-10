@@ -64,6 +64,10 @@ $this->import('
             <template #map>
                 <?php $this->part('text-image-map') ?>
             </template>
+
+            <template #developer>
+                <?php $this->part('text-image-developer') ?>
+            </template>
         </oc-tabs>
     </div>
 

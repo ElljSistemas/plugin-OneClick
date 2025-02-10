@@ -210,6 +210,15 @@ $metadata = [
         'label' => i::__('Descrição da seção Mapa na página inicial, com limite de 250 caracteres.'),
         'type' => 'textarea',
     ],
+     // Desenvolvedores
+     'developerTitle' => [
+        'label' => i::__('Título da seção Desenvolvedores na página inicial, com limite de 65 caracteres.'),
+        'type' => 'text',
+    ],
+    'developerDescription' => [
+        'label' => i::__('Descrição da seção Desenvolvedores na página inicial, com limite de 250 caracteres.'),
+        'type' => 'textarea',
+    ],
 ];
 
 return $metadata;
