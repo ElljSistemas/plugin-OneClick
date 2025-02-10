@@ -75,5 +75,23 @@ $this->import('
             </oc-text-image>
         </template>
 
+        <template #agent="{tab}">
+            <div class="entities-tabs"></div>
+
+            <oc-text-image :entity="entity" slug="agent">
+                <template #agent-text="{tab, entity}">
+                    <?php $this->part('text-image-entities--agent-text') ?>
+                </template>
+
+                <template #agent-image="{tab, entity}">
+                    <mc-alert type="warning">
+                        <?= i::__('Configure aqui a imagem do card de Espaços na Home. Certifique-se de que a imagem tenha as dimensões de ') ?><span class="color-red"><?= i::__('800x320') ?></span><?= i::__(', mantendo a proporção de 5:2') ?>
+                    </mc-alert>
+
+                    <oc-upload :entity="entity" prop="home-agents" dir="assets/img/home" :imageSize="[900, 320]"></oc-upload>
+                </template>
+            </oc-text-image>
+        </template>
+
     </oc-tabs>
 </div>

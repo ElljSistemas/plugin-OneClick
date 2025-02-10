@@ -161,6 +161,15 @@ $metadata = [
         'label' => i::__('imagem da entidade espaços na home'),
         'type' => 'json',
     ],
+     // Entidade agentes
+     'entityAgentDescription' => [
+        'label' => i::__('Texto com, no máximo, 600 caracteres.'),
+        'type' => 'textarea',
+    ],
+    'entitiesAgentImageData' => [
+        'label' => i::__('imagem da entidade agentes na home'),
+        'type' => 'json',
+    ],
 ];
 
 return $metadata;

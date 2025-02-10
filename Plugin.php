@@ -370,11 +370,18 @@ class Plugin extends \MapasCulturais\Plugin
             $app->config['module.home']['home-spaces'] = "img/home/{$entities_space_file}";
         }
 
+        $entities_agent_file = null;
+        if($entitiesAgentImageData = $settings->entitiesAgentImageData) {
+            $entities_agent_file =   basename($entitiesAgentImageData->path);
+            $app->config['module.home']['home-agents'] = "img/home/{$entities_agent_file}";
+        }
+
         $app->view->jsObject['config']['oneClickUploads'] = [
             'home-header' => $app->view->asset("img/home/{$banner_ile}", false),
             'home-opportunities' => $app->view->asset("img/home/{$entities_opportunity_file}", false),
             'home-events' => $app->view->asset("img/home/{$entities_event_file}", false),
             'home-space' => $app->view->asset("img/home/{$entities_space_file}", false),
+            'home-agents' => $app->view->asset("img/home/{$entities_agent_file}", false),
          ];
     }
 
@@ -411,6 +418,10 @@ class Plugin extends \MapasCulturais\Plugin
 
         if($entitySpaceDescription = $settings->entitySpaceDescription) {
             $app->config['text:home-entities.spaces'] = $entitySpaceDescription;
+        }
+
+        if($entityAgentDescription = $settings->entityAgentDescription) {
+            $app->config['text:home-entities.agents'] = $entityAgentDescription;
         }
     }
 
