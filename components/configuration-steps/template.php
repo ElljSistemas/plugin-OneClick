@@ -52,6 +52,9 @@ $this->import('
             <template #entities>
                 <?php $this->part('text-image-entities') ?>
             </template>
+            <template #feature>
+                <?php $this->part('text-image-feature') ?>
+            </template>
         </oc-tabs>
     </div>
 
