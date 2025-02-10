@@ -48,6 +48,10 @@ $this->import('
             <template #banner>
                 <?php $this->part('text-image-banner') ?>
             </template>
+
+            <template #entities>
+                <?php $this->part('text-image-entities') ?>
+            </template>
         </oc-tabs>
     </div>
 
