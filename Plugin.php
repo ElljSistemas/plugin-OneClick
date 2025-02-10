@@ -378,6 +378,10 @@ class Plugin extends \MapasCulturais\Plugin
         if($bannerDescription = $settings->bannerDescription) {
             $app->config['text:home-header.description'] = $bannerDescription;
         }
+
+        if($entityOpportunityDescription = $settings->entityOpportunityDescription) {
+            $app->config['text:home-entities.opportunities'] = $entityOpportunityDescription;
+        }
     }
 
     /**
