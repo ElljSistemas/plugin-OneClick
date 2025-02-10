@@ -38,7 +38,7 @@ app.component('oc-upload', {
     data() {
         return {
             newFile: {},
-            previewImage: $MAPAS.config.oneClickUploads['home-header'] || null,
+            previewImage: $MAPAS.config.oneClickUploads[this.prop] || null,
             errorHandlerImage: null
 
         };
