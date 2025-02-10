@@ -381,12 +381,20 @@ class Plugin extends \MapasCulturais\Plugin
             $public_agent_url = $app->view->asset("img/home/{$entities_agent_file}", false);
         }
 
+        $public_project_url = null;
+        if($entitiesProjectImageData = $settings->entitiesProjectImageData) {
+            $entities_project_file =   basename($entitiesProjectImageData->path);
+            $app->config['module.home']['home-projects'] = "img/home/{$entities_project_file}";
+            $public_project_url = $app->view->asset("img/home/{$entities_project_file}", false);
+        }
+
         $app->view->jsObject['config']['oneClickUploads'] = [
             'home-header' => $public_banner_url,
             'home-opportunities' => $public_opportunity_url,
             'home-events' => $public_event_url,
             'home-spaces' => $public_space_url,
             'home-agents' => $public_agent_url,
+            'home-projects' => $public_project_url,
         ];
     }
 
@@ -427,6 +435,10 @@ class Plugin extends \MapasCulturais\Plugin
 
         if($entityAgentDescription = $settings->entityAgentDescription) {
             $app->config['text:home-entities.agents'] = $entityAgentDescription;
+        }
+
+        if($entityProjectDescription = $settings->entityProjectDescription) {
+            $app->config['text:home-entities.projects'] = $entityProjectDescription;
         }
     }
 

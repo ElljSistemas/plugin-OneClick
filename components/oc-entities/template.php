@@ -34,7 +34,7 @@ $this->import('
                         <?= i::__('Configure aqui a imagem do card de Oportunidades na Home. Certifique-se de que a imagem tenha as dimensões de ') ?><span class="color-red"><?= i::__('800x320') ?></span><?= i::__(', mantendo a proporção de 5:2') ?>
                     </mc-alert>
 
-                    <oc-upload :entity="entity" prop="home-opportunities" dir="assets/img/home" :imageSize="[900, 320]"></oc-upload>
+                    <oc-upload :entity="entity" prop="home-opportunities" dir="assets/img/home" :imageSize="[800, 320]"></oc-upload>
                 </template>
             </oc-text-image>
         </template>
@@ -52,7 +52,7 @@ $this->import('
                         <?= i::__('Configure aqui a imagem do card de Eventos na Home. Certifique-se de que a imagem tenha as dimensões de ') ?><span class="color-red"><?= i::__('800x320') ?></span><?= i::__(', mantendo a proporção de 5:2') ?>
                     </mc-alert>
 
-                    <oc-upload :entity="entity" prop="home-events" dir="assets/img/home" :imageSize="[900, 320]"></oc-upload>
+                    <oc-upload :entity="entity" prop="home-events" dir="assets/img/home" :imageSize="[800, 320]"></oc-upload>
                 </template>
             </oc-text-image>
         </template>
@@ -70,7 +70,7 @@ $this->import('
                         <?= i::__('Configure aqui a imagem do card de Espaços na Home. Certifique-se de que a imagem tenha as dimensões de ') ?><span class="color-red"><?= i::__('800x320') ?></span><?= i::__(', mantendo a proporção de 5:2') ?>
                     </mc-alert>
 
-                    <oc-upload :entity="entity" prop="home-spaces" dir="assets/img/home" :imageSize="[900, 320]"></oc-upload>
+                    <oc-upload :entity="entity" prop="home-spaces" dir="assets/img/home" :imageSize="[800, 320]"></oc-upload>
                 </template>
             </oc-text-image>
         </template>
@@ -88,7 +88,25 @@ $this->import('
                         <?= i::__('Configure aqui a imagem do card de Espaços na Home. Certifique-se de que a imagem tenha as dimensões de ') ?><span class="color-red"><?= i::__('800x320') ?></span><?= i::__(', mantendo a proporção de 5:2') ?>
                     </mc-alert>
 
-                    <oc-upload :entity="entity" prop="home-agents" dir="assets/img/home" :imageSize="[900, 320]"></oc-upload>
+                    <oc-upload :entity="entity" prop="home-agents" dir="assets/img/home" :imageSize="[800, 320]"></oc-upload>
+                </template>
+            </oc-text-image>
+        </template>
+
+        <template #project="{tab}">
+            <div class="entities-tabs"></div>
+
+            <oc-text-image :entity="entity" slug="project">
+                <template #project-text="{tab, entity}">
+                    <?php $this->part('text-image-entities--project-text') ?>
+                </template>
+
+                <template #project-image="{tab, entity}">
+                    <mc-alert type="warning">
+                        <?= i::__('Configure aqui a imagem do card de Espaços na Home. Certifique-se de que a imagem tenha as dimensões de ') ?><span class="color-red"><?= i::__('800x320') ?></span><?= i::__(', mantendo a proporção de 5:2') ?>
+                    </mc-alert>
+
+                    <oc-upload :entity="entity" prop="home-projects" dir="assets/img/home" :imageSize="[800, 320]"></oc-upload>
                 </template>
             </oc-text-image>
         </template>
