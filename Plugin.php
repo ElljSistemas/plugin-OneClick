@@ -388,6 +388,13 @@ class Plugin extends \MapasCulturais\Plugin
             $public_project_url = $app->view->asset("img/home/{$entities_project_file}", false);
         }
 
+        $public_register_url = null;
+        if($registerImageData = $settings->registerImageData) {
+            $entities_register_file =   basename($registerImageData->path);
+            $app->config['module.home']['home-register'] = "img/home/{$entities_register_file}";
+            $public_register_url = $app->view->asset("img/home/{$entities_register_file}", false);
+        }
+
         $app->view->jsObject['config']['oneClickUploads'] = [
             'home-header' => $public_banner_url,
             'home-opportunities' => $public_opportunity_url,
@@ -395,6 +402,7 @@ class Plugin extends \MapasCulturais\Plugin
             'home-spaces' => $public_space_url,
             'home-agents' => $public_agent_url,
             'home-projects' => $public_project_url,
+            'home-register' => $public_register_url,
         ];
     }
 
@@ -447,6 +455,14 @@ class Plugin extends \MapasCulturais\Plugin
 
         if($featureDescription = $settings->featureDescription) {
             $app->config['text:home-feature.description'] = $featureDescription;
+        }
+
+        if($registerTitle = $settings->registerTitle) {
+            $app->config['text:home-register.title'] = $registerTitle;
+        }
+
+        if($registerDescription = $settings->registerDescription) {
+            $app->config['text:home-register.description'] = $registerDescription;
         }
     }
 

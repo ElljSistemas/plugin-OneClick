@@ -143,8 +143,8 @@ $metadata = [
         'label' => i::__('imagem da entidade oportunidade na home'),
         'type' => 'json',
     ],
-     // Entidade eventos
-     'entityEventDescription' => [
+    // Entidade eventos
+    'entityEventDescription' => [
         'label' => i::__('Texto com, no máximo, 600 caracteres.'),
         'type' => 'textarea',
     ],
@@ -161,8 +161,8 @@ $metadata = [
         'label' => i::__('imagem da entidade espaços na home'),
         'type' => 'json',
     ],
-     // Entidade agentes
-     'entityAgentDescription' => [
+    // Entidade agentes
+    'entityAgentDescription' => [
         'label' => i::__('Texto com, no máximo, 600 caracteres.'),
         'type' => 'textarea',
     ],
@@ -170,7 +170,7 @@ $metadata = [
         'label' => i::__('imagem da entidade agentes na home'),
         'type' => 'json',
     ],
-     // Entidade projetos
+    // Entidade projetos
     'entityProjectDescription' => [
         'label' => i::__('Texto com, no máximo, 600 caracteres.'),
         'type' => 'textarea',
@@ -179,13 +179,26 @@ $metadata = [
         'label' => i::__('imagem da entidade projetos na home'),
         'type' => 'json',
     ],
-     // Em destaque
+    // Em destaque
     'featureTitle' => [
         'label' => i::__('Título da seção de Em destaque na página inicial, com limite de 65 caracteres.'),
         'type' => 'text',
     ],
     'featureDescription' => [
         'label' => i::__('Descrição da seção de Em destaque na página inicial, com limite de 250 caracteres.'),
+        'type' => 'textarea',
+    ],
+    // Textos e imagens cadastre-se
+    'registerImageData' => [
+        'label' => i::__('imagem da seção cadastre-se'),
+        'type' => 'json',
+    ],
+    'registerTitle' => [
+        'label' => i::__('Título da seção de Casdastre-se na página inicial, com limite de 65 caracteres.'),
+        'type' => 'text',
+    ],
+    'registerDescription' => [
+        'label' => i::__('Descrição da seção de Casdastre-se na página inicial, com limite de 300 caracteres.'),
         'type' => 'textarea',
     ],
 ];

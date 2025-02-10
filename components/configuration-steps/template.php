@@ -52,8 +52,13 @@ $this->import('
             <template #entities>
                 <?php $this->part('text-image-entities') ?>
             </template>
+
             <template #feature>
                 <?php $this->part('text-image-feature') ?>
+            </template>
+
+            <template #register>
+                <?php $this->part('text-image-register') ?>
             </template>
         </oc-tabs>
     </div>

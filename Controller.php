@@ -169,6 +169,7 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
             'home-spaces' => 'entitiesSpaceImageData',
             'home-agents' => 'entitiesAgentImageData',
             'home-projects' => 'entitiesProjectImageData',
+            'home-register' => 'registerImageData'
         ];
     }
 }
