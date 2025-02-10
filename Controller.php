@@ -107,6 +107,8 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
             $new_name = (new DateTime("now"))->getTimestamp();
             $ext = pathinfo($oldName, PATHINFO_EXTENSION);
             $prop = $this->data['prop'];
+            $metadataFiles = $this->fromToFilesMetadata();
+            $metadata = $metadataFiles[$prop];
 
             $dir = __DIR__ . "/files";
             if (isset($this->data['dir'])) {
@@ -126,7 +128,7 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
 
                 $bannerImageData = [];
                 $old_image = null;
-                if ($bannerImageData = $settings->bannerImageData) {
+                if ($bannerImageData = $settings->$metadata) {
                     $old_image = $bannerImageData->path;
                 }
 
@@ -145,7 +147,7 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
                         unlink($old_image);
                     }
 
-                    $settings->bannerImageData = $bannerImageData;
+                    $settings->$metadata = $bannerImageData;
                     $settings->save(true);
                     $this->json($bannerImageData);
                 }
@@ -153,5 +155,16 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
         }
 
         $this->json(false);
+    }
+
+    /**
+     * @return array 
+     */
+    protected function fromToFilesMetadata(): array
+    {
+        return [
+            'home-header' => 'bannerImageData',
+            'home-opportunities' => 'entitiesOpportunityImageData',
+        ];
     }
 }
