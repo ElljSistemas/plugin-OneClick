@@ -440,6 +440,14 @@ class Plugin extends \MapasCulturais\Plugin
         if($entityProjectDescription = $settings->entityProjectDescription) {
             $app->config['text:home-entities.projects'] = $entityProjectDescription;
         }
+
+        if($featureTitle = $settings->featureTitle) {
+            $app->config['text:home-feature.title'] = $featureTitle;
+        }
+
+        if($featureDescription = $settings->featureDescription) {
+            $app->config['text:home-feature.description'] = $featureDescription;
+        }
     }
 
     /**
