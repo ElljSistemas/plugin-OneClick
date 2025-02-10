@@ -112,7 +112,7 @@ $metadata = [
         'label' => i::__('Redes sociais configuradas'),
         'type' => 'json',
     ],
-    // Textos e imagens
+    // Textos e imagens baner
     'bannerImageData' => [
         'label' => i::__('imagem Banner home'),
         'type' => 'json',
@@ -124,6 +124,15 @@ $metadata = [
     'bannerDescription' => [
         'label' => i::__('Texto com, no máximo, 600 caracteres.'),
         'type' => 'textarea',
+    ],
+    // Textos e imagens entidades [opportunity]
+    'entityOpportunityDescription' => [
+        'label' => i::__('Texto com, no máximo, 600 caracteres.'),
+        'type' => 'textarea',
+    ],
+    'entitiesOpportunityImageData' => [
+        'label' => i::__('imagem da entidade oportunidade na home'),
+        'type' => 'json',
     ],
 ];
 
