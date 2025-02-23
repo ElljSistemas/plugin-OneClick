@@ -219,6 +219,49 @@ $metadata = [
         'label' => i::__('Descrição da seção Desenvolvedores na página inicial, com limite de 250 caracteres.'),
         'type' => 'textarea',
     ],
+    // Imagens diversas
+    'typeLogoDefinition' => [
+        'label' => i::__('Defina aqui como deseja utilizar o logotipo do ambiente'),
+        'type' => 'radio',
+        'options' => [
+            'default' => i::__('Utilizar o logotipo padrão'),
+            'image' => i::__('Carregar uma imagem'),
+        ],
+        'default' => 'default'
+    ],
+    'logoDefaultTitle' => [
+        'label' => i::__('Título'),
+        'type' => 'text',
+    ],
+    'logoDefaultSubTitle' => [
+        'label' => i::__('Subtítulo'),
+        'type' => 'text',
+    ],
+
+    'logoColorPart1' => [
+        'label' => i::__('Cor logotipo parte 1'),
+        'type' => 'color',
+        'default' => null,
+    ],
+    'logoColorPart2' => [
+        'label' => i::__('Cor logotipo parte 2'),
+        'type' => 'color',
+        'default' => null,
+    ],
+    'logoColorPart3' => [
+        'label' => i::__('Cor logotipo parte 3'),
+        'type' => 'color',
+        'default' => null,
+    ],
+    'logoColorPart4' => [
+        'label' => i::__('Cor logotipo parte 4'),
+        'type' => 'color',
+        'default' => null,
+    ],
+    'imageLogoData' => [
+        'label' => i::__('Logotipo'),
+        'type' => 'json',
+    ],
 ];
 
 return $metadata;

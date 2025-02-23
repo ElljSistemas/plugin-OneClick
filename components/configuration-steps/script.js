@@ -4,7 +4,8 @@ app.component('configuration-steps', {
     setup() {
         const text = Utils.getTexts('configuration-steps')
         const messages = useMessages();
-        return { text, messages }
+        const globalState = useGlobalState();
+        return { text, messages, globalState }
     },
 
     computed: {
@@ -13,20 +14,23 @@ app.component('configuration-steps', {
         }
     },
     data() {
+        this.globalState.useActions = 'nouse-global';
+
         let tabGroups = {
             'settings': [
-                { label: 'Email', isActive: true, submenu: [], ref: "email", useActions: true },
+                { label: 'Email', isActive: false, submenu: [], ref: "email", useActions: true },
                 { label: 'reCaptcha', isActive: false, submenu: [], ref: "recaptcha", useActions: true },
                 { label: 'Georreferenciamento', isActive: false, submenu: [], ref: "georeferencing", useActions: true },
                 { label: 'Redes sociais', isActive: false, submenu: [], ref: "socialmedia", useActions: true },
             ],
             'text-image': [
-                { label: 'Banner', isActive: true, submenu: [], ref: "banner", useActions: true },
+                { label: 'Banner', isActive: false, submenu: [], ref: "banner", useActions: true },
                 { label: 'Entidades', isActive: false, submenu: [], ref: "entities", useActions: true },
                 { label: 'Em destaque', isActive: false, submenu: [], ref: "feature", useActions: true },
                 { label: 'Cadastre-se', isActive: false, submenu: [], ref: "register", useActions: true },
                 { label: 'Mapa', isActive: false, submenu: [], ref: "map", useActions: true },
                 { label: 'Desenvolvedores', isActive: false, submenu: [], ref: "developer", useActions: true },
+                { label: 'Diversas', isActive: true, submenu: [], ref: "complementary", useActions: true },
             ],
         }
 

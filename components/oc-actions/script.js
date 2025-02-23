@@ -1,5 +1,11 @@
 app.component('oc-actions', {
     template: $TEMPLATES['oc-actions'],
+    setup() {
+        const text = Utils.getTexts('evaluation-actions')
+        const globalState = useGlobalState();
+        return { text, globalState }
+    },
+
     mounted() {
         window.addEventListener('useActions', this.changeUseActions);
     },
@@ -10,8 +16,10 @@ app.component('oc-actions', {
         }
     },
     data() {
+        let useActions = this.globalState.useActions === 'nouse-global' ? true : this.globalState.useActions;
+        
         return {
-            useActions: true
+            useActions: useActions
         }
     },
     methods: {

@@ -9,24 +9,28 @@ app.component('oc-text-image', {
         slug: {
             type: String,
             required: ''
-        }
+        },
+        tabsActive: {
+            type: [Boolean, Object],
+            required: false
+        },
     },
-    computed: {
-        tabGroups() {
-            {
-                return {
-                    tabs: [
-                        { label: 'Texto', isActive: true, submenu: [], ref: 'text', useActions: true },
-                        { label: 'Imagem', isActive: false, submenu: [], ref: 'image', useActions: false },
-                    ],
-                }
-            }
-        }
-    },
+    computed: {},
     data() {
-        return {}
+        let tabGroups = this.tabsActive || this.tabsDefault()
+
+        return {
+            tabGroups
+        }
     },
     methods: {
-
+        tabsDefault() {
+            return {
+                tabs: [
+                    { label: 'Texto', isActive: true, submenu: [], ref: 'text', useActions: true },
+                    { label: 'Imagem', isActive: false, submenu: [], ref: 'image', useActions: false },
+                ],
+            };
+        }
     }
 });

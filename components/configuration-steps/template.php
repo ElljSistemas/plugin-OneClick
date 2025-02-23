@@ -28,7 +28,7 @@ $this->import('
     </div>
 
     <div class="menu">
-        <oc-tabs :entity="entity" :groups="tabGroups" initial-group="settings">
+        <oc-tabs :entity="entity" :groups="tabGroups" initial-group="text-image">
             <template #email="{tab}">
                 <?php $this->part('settings-email') ?>
             </template>
@@ -67,6 +67,10 @@ $this->import('
 
             <template #developer>
                 <?php $this->part('text-image-developer') ?>
+            </template>
+
+            <template #complementary>
+                <?php $this->part('text-image-complementary') ?>
             </template>
         </oc-tabs>
     </div>

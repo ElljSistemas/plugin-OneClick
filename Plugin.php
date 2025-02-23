@@ -168,6 +168,7 @@ class Plugin extends \MapasCulturais\Plugin
             $iconset['one-click-vimeo'] = 'mdi:vimeo';
             $iconset['one-click-youtube'] = 'mdi:youtube';
             $iconset['one-click-upload'] = 'et:upload';
+            $iconset['one-click-edit'] = 'tabler:edit';
 
         });
 
@@ -189,6 +190,7 @@ class Plugin extends \MapasCulturais\Plugin
                 $self->setSocialMedia($settings, $app);
                 $self->setImagesHome($settings, $app);
                 $self->setTextsHome($settings, $app);
+                $self->setLogoDefinitions($settings, $app);
             }
             
 
@@ -481,6 +483,42 @@ class Plugin extends \MapasCulturais\Plugin
             $app->config['text:home-developers.description'] = $developDescription;
         }
     }
+
+    /**
+     * @param null|Settings $settings 
+     * @param App $app 
+     * @return void 
+     * @throws Exception 
+     */
+    public function setLogoDefinitions(?Settings $settings, App $app): void
+    {
+        if($settings->typeLogoDefinition === 'default') {
+            if($logoDefaultTitle = $settings->logoDefaultTitle) {
+                $app->config['logo.title'] = $logoDefaultTitle;
+            }
+    
+            if($logoDefaultSubTitle = $settings->logoDefaultSubTitle) {
+                $app->config['logo.subtitle'] = $logoDefaultSubTitle;
+            }
+    
+            $app->config['logo.colors'] = [
+                $settings->logoColorPart1 ?: "var(--mc-primary-300)",
+                $settings->logoColorPart2 ?: "var(--mc-primary-500)",
+                $settings->logoColorPart3 ?: "var(--mc-secondary-300)",
+                $settings->logoColorPart4 ?: "var(--mc-secondary-500)",
+            ];
+        } else {
+            $public_logo_url = null;
+            if($imageLogoData = $settings->imageLogoData) {
+                $app->config['logo.hideLabel'] = true;
+                $logo_image_file =   basename($imageLogoData->path);
+                $app->config['logo.image'] = "img/home/{$logo_image_file}";
+                $public_logo_url = $app->view->asset("img/home/{$logo_image_file}", false);
+                $app->view->jsObject['config']['oneClickUploads']['logo-image'] = $public_logo_url;
+            }
+        }
+    }
+    
 
     /**
      * @return Settings 
