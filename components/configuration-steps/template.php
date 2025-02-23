@@ -37,31 +37,31 @@ $this->import('
                 <?php $this->part('settings-recaptcha') ?>
             </template>
 
-            <template #georeferencing>
+            <template #georeferencing="{tab}">
                 <?php $this->part('settings-georeferencing') ?>
             </template>
 
-            <template #socialmedia>
+            <template #socialmedia="{tab}">
                 <?php $this->part('settings-socialmedia') ?>
             </template>
 
-            <template #banner>
+            <template #banner="{tab}">
                 <?php $this->part('text-image-banner') ?>
             </template>
 
-            <template #entities>
+            <template #entities="{tab}">
                 <?php $this->part('text-image-entities') ?>
             </template>
 
-            <template #feature>
+            <template #feature="{tab}">
                 <?php $this->part('text-image-feature') ?>
             </template>
 
-            <template #register>
+            <template #register="{tab}">
                 <?php $this->part('text-image-register') ?>
             </template>
 
-            <template #map>
+            <template #map="{tab}">
                 <?php $this->part('text-image-map') ?>
             </template>
 

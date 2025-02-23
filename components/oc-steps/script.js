@@ -32,15 +32,17 @@ app.component('oc-steps', {
             }
         },
         changeStep(ref) {
-            for (step of this.steps) {
-                step.isActive = false;
-                if (step.ref == ref) {
-                    step.isActive = true;
-                    this.stepActive = ref;
+            if (ref != this.stepActive) {
+                for (step of this.steps) {
+                    step.isActive = false;
+                    if (step.ref == ref) {
+                        step.isActive = true;
+                        this.stepActive = ref;
+                    }
                 }
-            }
 
-            this.dispatchStepActive();
+                this.dispatchStepActive();
+            }
         },
 
         dispatchStepActive() {

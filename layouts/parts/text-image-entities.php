@@ -12,5 +12,5 @@ $this->import('
 ');
 ?>
 <div class="text-image-entities">
-    <oc-entities :entity="entity"></oc-entities>
+    <oc-entities :entity="entity" :tabGroups="tab.submenu"></oc-entities>
 </div>

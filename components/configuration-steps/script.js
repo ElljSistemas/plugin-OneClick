@@ -25,7 +25,18 @@ app.component('configuration-steps', {
             ],
             'text-image': [
                 { label: 'Banner', isActive: true, submenu: [], ref: "banner", useActions: true },
-                { label: 'Entidades', isActive: false, submenu: [], ref: "entities", useActions: true },
+                {
+                    label: 'Entidades', isActive: false, submenu: {
+                        tabs: [
+                            { label: 'Textos globais da seção', isActive: false, submenu: [], ref: 'entitiesSection', useActions: true },
+                            { label: 'Oportunidades', isActive: true, submenu: [], ref: 'opportunity', useActions: true },
+                            { label: 'Eventos', isActive: false, submenu: [], ref: 'event', useActions: true },
+                            { label: 'Espaços', isActive: false, submenu: [], ref: 'space', useActions: true },
+                            { label: 'Agentes', isActive: false, submenu: [], ref: 'agent', useActions: true },
+                            { label: 'Projetos', isActive: false, submenu: [], ref: 'project', useActions: true },
+                        ],
+                    }, ref: "entities", useActions: true
+                },
                 { label: 'Em destaque', isActive: false, submenu: [], ref: "feature", useActions: true },
                 { label: 'Cadastre-se', isActive: false, submenu: [], ref: "register", useActions: true },
                 { label: 'Mapa', isActive: false, submenu: [], ref: "map", useActions: true },
