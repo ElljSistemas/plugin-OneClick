@@ -24,7 +24,7 @@ app.component('configuration-steps', {
                 { label: 'Redes sociais', isActive: false, submenu: [], ref: "socialmedia", useActions: true },
             ],
             'text-image': [
-                { label: 'Banner', isActive: false, submenu: [], ref: "banner", useActions: true },
+                { label: 'Banner', isActive: true, submenu: [], ref: "banner", useActions: true },
                 { label: 'Entidades', isActive: false, submenu: [], ref: "entities", useActions: true },
                 { label: 'Em destaque', isActive: false, submenu: [], ref: "feature", useActions: true },
                 { label: 'Cadastre-se', isActive: false, submenu: [], ref: "register", useActions: true },
