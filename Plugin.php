@@ -29,7 +29,7 @@ class Plugin extends \MapasCulturais\Plugin
         if (!$app->repo('DbUpdate')->findBy(['name' => 'create table settings sequence'])) {
             $em = $app->em;
             $conn = $em->getConnection();
-        
+
             // Verificar se a sequência 'oc_settings_id_seq' já existe
             $sequenceExists = $conn->fetchOne("
                 SELECT COUNT(*) 
@@ -40,7 +40,7 @@ class Plugin extends \MapasCulturais\Plugin
             if ($sequenceExists == 0) {
                 $conn->executeQuery("CREATE SEQUENCE oc_settings_id_seq INCREMENT BY 1 MINVALUE 1 START 1");
             }
-        
+
             // Verificar se a sequência 'settings_meta_id_seq' já existe
             $sequenceExists = $conn->fetchOne("
                 SELECT COUNT(*) 
@@ -51,7 +51,7 @@ class Plugin extends \MapasCulturais\Plugin
             if ($sequenceExists == 0) {
                 $conn->executeQuery("CREATE SEQUENCE settings_meta_id_seq INCREMENT BY 1 MINVALUE 1 START 1");
             }
-        
+
             $app->disableAccessControl();
             $db_update = new \MapasCulturais\Entities\DbUpdate;
             $db_update->name = 'create table settings sequence';
@@ -59,11 +59,11 @@ class Plugin extends \MapasCulturais\Plugin
             $app->enableAccessControl();
             $conn->commit();
         }
-        
+
         if (!$app->repo('DbUpdate')->findBy(['name' => 'create table settings'])) {
             $em = $app->em;
             $conn = $em->getConnection();
-        
+
             // Verificar se a tabela 'settings' já existe
             $tableExists = $conn->fetchOne("
                 SELECT COUNT(*) 
@@ -82,7 +82,7 @@ class Plugin extends \MapasCulturais\Plugin
                     PRIMARY KEY(id))
                 ");
             }
-        
+
             // Verificar se a tabela 'settings_meta' já existe
             $tableExists = $conn->fetchOne("
                 SELECT COUNT(*) 
@@ -99,7 +99,7 @@ class Plugin extends \MapasCulturais\Plugin
                     );
                 ");
             }
-        
+
             $app->disableAccessControl();
             $db_update = new \MapasCulturais\Entities\DbUpdate;
             $db_update->name = 'create table settings';
@@ -107,11 +107,11 @@ class Plugin extends \MapasCulturais\Plugin
             $app->enableAccessControl();
             $conn->commit();
         }
-        
+
         if (!$app->repo('DbUpdate')->findBy(['name' => 'inserts default settings'])) {
             $em = $app->em;
             $conn = $em->getConnection();
-            
+
             // Settings inicial
             $conn->executeQuery("INSERT INTO settings (id, status, metadata, create_timestamp, update_timestamp, subsite_id) VALUES (nextval('oc_settings_id_seq'::regclass), 1, '{}', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null)");
 
@@ -119,11 +119,11 @@ class Plugin extends \MapasCulturais\Plugin
             $conn->executeQuery("INSERT INTO settings_meta (id, key, value, object_id) VALUES (nextval('settings_meta_id_seq'::regclass), 'mailer_email', 'sysadmin@localhost', 1)");
             $conn->executeQuery("INSERT INTO settings_meta (id, key, value, object_id) VALUES (nextval('settings_meta_id_seq'::regclass), 'mailer_host', 'mailhog', 1)");
             $conn->executeQuery("INSERT INTO settings_meta (id, key, value, object_id) VALUES (nextval('settings_meta_id_seq'::regclass), 'mailer_protocol', 'LOCAL', 1)");
-            
+
             // reCaptcha
             $conn->executeQuery("INSERT INTO settings_meta (id, key, value, object_id) VALUES (nextval('settings_meta_id_seq'::regclass), 'recaptcha_secret', '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe', 1)");
             $conn->executeQuery("INSERT INTO settings_meta (id, key, value, object_id) VALUES (nextval('settings_meta_id_seq'::regclass), 'recaptcha_sitekey', '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', 1)");
-        
+
             $app->disableAccessControl();
             $db_update = new \MapasCulturais\Entities\DbUpdate;
             $db_update->name = 'inserts default settings';
@@ -131,7 +131,7 @@ class Plugin extends \MapasCulturais\Plugin
             $app->enableAccessControl();
             $conn->commit();
         }
-        
+
 
         $app->view->enqueueStyle('app-v2', 'OneClick-v2', 'css/plugin-OneClick.css');
 
@@ -169,7 +169,6 @@ class Plugin extends \MapasCulturais\Plugin
             $iconset['one-click-youtube'] = 'mdi:youtube';
             $iconset['one-click-upload'] = 'et:upload';
             $iconset['one-click-edit'] = 'tabler:edit';
-
         });
 
         // Garante o registro de metadados em todas as requisições
@@ -194,11 +193,10 @@ class Plugin extends \MapasCulturais\Plugin
                 $self->setFaviconDefinitions($settings, $app);
                 $self->setShare($settings, $app);
             }
-            
+
 
             $app->enableAccessControl();
         });
-
     }
 
     /**
@@ -351,49 +349,49 @@ class Plugin extends \MapasCulturais\Plugin
     public function setImagesHome(?Settings $settings, App $app)
     {
         $public_banner_url = null;
-        if($bannerImageData = $settings->bannerImageData) {
+        if ($bannerImageData = $settings->bannerImageData) {
             $banner_ile =   basename($bannerImageData->path);
             $app->config['module.home']['home-header'] = "img/home/{$banner_ile}";
             $public_banner_url = $app->view->asset("img/home/{$banner_ile}", false);
         }
-        
+
         $public_opportunity_url = null;
-        if($entitiesOpportunityImageData = $settings->entitiesOpportunityImageData) {
+        if ($entitiesOpportunityImageData = $settings->entitiesOpportunityImageData) {
             $entities_opportunity_file =   basename($entitiesOpportunityImageData->path);
             $app->config['module.home']['home-opportunities'] = "img/home/{$entities_opportunity_file}";
             $public_opportunity_url = $app->view->asset("img/home/{$entities_opportunity_file}", false);
         }
 
         $public_event_url = null;
-        if($entitiesEventImageData = $settings->entitiesEventImageData) {
+        if ($entitiesEventImageData = $settings->entitiesEventImageData) {
             $entities_event_file =   basename($entitiesEventImageData->path);
             $app->config['module.home']['home-events'] = "img/home/{$entities_event_file}";
             $public_event_url = $app->view->asset("img/home/{$entities_event_file}", false);
         }
 
         $public_space_url = null;
-        if($entitiesSpaceImageData = $settings->entitiesSpaceImageData) {
+        if ($entitiesSpaceImageData = $settings->entitiesSpaceImageData) {
             $entities_space_file =   basename($entitiesSpaceImageData->path);
             $app->config['module.home']['home-spaces'] = "img/home/{$entities_space_file}";
             $public_space_url = $app->view->asset("img/home/{$entities_space_file}", false);
         }
 
         $public_agent_url = null;
-        if($entitiesAgentImageData = $settings->entitiesAgentImageData) {
+        if ($entitiesAgentImageData = $settings->entitiesAgentImageData) {
             $entities_agent_file =   basename($entitiesAgentImageData->path);
             $app->config['module.home']['home-agents'] = "img/home/{$entities_agent_file}";
             $public_agent_url = $app->view->asset("img/home/{$entities_agent_file}", false);
         }
 
         $public_project_url = null;
-        if($entitiesProjectImageData = $settings->entitiesProjectImageData) {
+        if ($entitiesProjectImageData = $settings->entitiesProjectImageData) {
             $entities_project_file =   basename($entitiesProjectImageData->path);
             $app->config['module.home']['home-projects'] = "img/home/{$entities_project_file}";
             $public_project_url = $app->view->asset("img/home/{$entities_project_file}", false);
         }
 
         $public_register_url = null;
-        if($registerImageData = $settings->registerImageData) {
+        if ($registerImageData = $settings->registerImageData) {
             $entities_register_file =   basename($registerImageData->path);
             $app->config['module.home']['home-register'] = "img/home/{$entities_register_file}";
             $public_register_url = $app->view->asset("img/home/{$entities_register_file}", false);
@@ -417,71 +415,71 @@ class Plugin extends \MapasCulturais\Plugin
      */
     public function setTextsHome(?Settings $settings, App $app)
     {
-        if($bannerTitle = $settings->bannerTitle) {
+        if ($bannerTitle = $settings->bannerTitle) {
             $app->config['text:home-header.title'] = $bannerTitle;
         }
 
-        if($entitiesTitle = $settings->entitiesTitle) {
+        if ($entitiesTitle = $settings->entitiesTitle) {
             $app->config['text:home-entities.title'] = $entitiesTitle;
         }
 
-        if($entitiesDescription = $settings->entitiesDescription) {
+        if ($entitiesDescription = $settings->entitiesDescription) {
             $app->config['text:home-entities.description'] = $entitiesDescription;
         }
 
-        if($bannerDescription = $settings->bannerDescription) {
+        if ($bannerDescription = $settings->bannerDescription) {
             $app->config['text:home-header.description'] = $bannerDescription;
         }
 
-        if($entityOpportunityDescription = $settings->entityOpportunityDescription) {
+        if ($entityOpportunityDescription = $settings->entityOpportunityDescription) {
             $app->config['text:home-entities.opportunities'] = $entityOpportunityDescription;
         }
 
-        if($entityEventDescription = $settings->entityEventDescription) {
+        if ($entityEventDescription = $settings->entityEventDescription) {
             $app->config['text:home-entities.events'] = $entityEventDescription;
         }
 
-        if($entitySpaceDescription = $settings->entitySpaceDescription) {
+        if ($entitySpaceDescription = $settings->entitySpaceDescription) {
             $app->config['text:home-entities.spaces'] = $entitySpaceDescription;
         }
 
-        if($entityAgentDescription = $settings->entityAgentDescription) {
+        if ($entityAgentDescription = $settings->entityAgentDescription) {
             $app->config['text:home-entities.agents'] = $entityAgentDescription;
         }
 
-        if($entityProjectDescription = $settings->entityProjectDescription) {
+        if ($entityProjectDescription = $settings->entityProjectDescription) {
             $app->config['text:home-entities.projects'] = $entityProjectDescription;
         }
 
-        if($featureTitle = $settings->featureTitle) {
+        if ($featureTitle = $settings->featureTitle) {
             $app->config['text:home-feature.title'] = $featureTitle;
         }
 
-        if($featureDescription = $settings->featureDescription) {
+        if ($featureDescription = $settings->featureDescription) {
             $app->config['text:home-feature.description'] = $featureDescription;
         }
 
-        if($registerTitle = $settings->registerTitle) {
+        if ($registerTitle = $settings->registerTitle) {
             $app->config['text:home-register.title'] = $registerTitle;
         }
 
-        if($registerDescription = $settings->registerDescription) {
+        if ($registerDescription = $settings->registerDescription) {
             $app->config['text:home-register.description'] = $registerDescription;
         }
 
-        if($mapTitle = $settings->mapTitle) {
+        if ($mapTitle = $settings->mapTitle) {
             $app->config['text:home-map.title'] = $mapTitle;
         }
 
-        if($mapDescription = $settings->mapDescription) {
+        if ($mapDescription = $settings->mapDescription) {
             $app->config['text:home-map.description'] = $mapDescription;
         }
 
-        if($developerTitle = $settings->developerTitle) {
+        if ($developerTitle = $settings->developerTitle) {
             $app->config['text:home-developers.title'] = $developerTitle;
         }
 
-        if($developDescription = $settings->developerDescription) {
+        if ($developDescription = $settings->developerDescription) {
             $app->config['text:home-developers.description'] = $developDescription;
         }
     }
@@ -494,15 +492,15 @@ class Plugin extends \MapasCulturais\Plugin
      */
     public function setLogoDefinitions(?Settings $settings, App $app): void
     {
-        if($settings->typeLogoDefinition === 'default') {
-            if($logoDefaultTitle = $settings->logoDefaultTitle) {
+        if ($settings->typeLogoDefinition === 'default') {
+            if ($logoDefaultTitle = $settings->logoDefaultTitle) {
                 $app->config['logo.title'] = $logoDefaultTitle;
             }
-    
-            if($logoDefaultSubTitle = $settings->logoDefaultSubTitle) {
+
+            if ($logoDefaultSubTitle = $settings->logoDefaultSubTitle) {
                 $app->config['logo.subtitle'] = $logoDefaultSubTitle;
             }
-    
+
             $app->config['logo.colors'] = [
                 $settings->logoColorPart1 ?: "var(--mc-primary-300)",
                 $settings->logoColorPart2 ?: "var(--mc-primary-500)",
@@ -511,7 +509,7 @@ class Plugin extends \MapasCulturais\Plugin
             ];
         } else {
             $public_logo_url = null;
-            if($imageLogoData = $settings->imageLogoData) {
+            if ($imageLogoData = $settings->imageLogoData) {
                 $app->config['logo.hideLabel'] = true;
                 $logo_image_file =   basename($imageLogoData->path);
                 $app->config['logo.image'] = "img/home/{$logo_image_file}";
@@ -530,7 +528,7 @@ class Plugin extends \MapasCulturais\Plugin
     public function setFaviconDefinitions(?Settings $settings, App $app): void
     {
         $public_faviconSVG_url = null;
-        if($faviconSvgData = $settings->faviconSvgData) {
+        if ($faviconSvgData = $settings->faviconSvgData) {
             $faviconSVG_image_file =   basename($faviconSvgData->path);
             $app->config['favicon.svg'] = "img/home/{$faviconSVG_image_file}";
             $public_faviconSVG_url = $app->view->asset("img/home/{$faviconSVG_image_file}", false);
@@ -538,7 +536,7 @@ class Plugin extends \MapasCulturais\Plugin
         }
 
         $public_faviconPNG_url = null;
-        if($faviconPngData = $settings->faviconPngData) {
+        if ($faviconPngData = $settings->faviconPngData) {
             $faviconPNG_image_file =   basename($faviconPngData->path);
             $app->config['favicon.png'] = "img/home/{$faviconPNG_image_file}";
             $public_faviconPNG_url = $app->view->asset("img/home/{$faviconPNG_image_file}", false);
@@ -549,16 +547,16 @@ class Plugin extends \MapasCulturais\Plugin
     public function setShare(?Settings $settings, App $app): void
     {
         $public_share_url = null;
-        if($shareData = $settings->shareData) {
+        if ($shareData = $settings->shareData) {
             $share_image_file =   basename($shareData->path);
             $app->config['share.image'] = "img/home/{$share_image_file}";
             $public_share_url = $app->view->asset("img/home/{$share_image_file}", false);
             $app->view->jsObject['config']['oneClickUploads']['share-image'] = $public_share_url;
         }
     }
-    
-    
-    
+
+
+
 
     /**
      * @return Settings 
@@ -651,5 +649,4 @@ class Plugin extends \MapasCulturais\Plugin
 
         return $from_to[$metadata];
     }
-    
 }
