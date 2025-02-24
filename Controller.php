@@ -170,7 +170,10 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
             'home-agents' => 'entitiesAgentImageData',
             'home-projects' => 'entitiesProjectImageData',
             'home-register' => 'registerImageData',
-            'logo-image' => 'imageLogoData'
+            'logo-image' => 'imageLogoData',
+            'favicon-svg' => 'faviconSvgData',
+            'favicon-png' => 'faviconPngData',
+            'share-image' => 'shareData',
         ];
     }
 }

@@ -12,6 +12,13 @@
         background-color: $white;
     }
 
+    .oc-dialog {
+        .content {
+            width: 55%;
+            background-color: $gray;  
+        }
+    }
+
     .complementary-tabs {
         .content {
             .stage {

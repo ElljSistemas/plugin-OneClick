@@ -19,5 +19,17 @@ $this->import('
         <template #logo="{tab}">
             <?php $this->part('text-image-complementary--logo') ?>
         </template>
+
+        <template #faviconSvg="{tab}">
+            <?php $this->part('text-image-complementary--faviconSvg') ?>
+        </template>
+
+        <template #faviconPng="{tab}">
+            <?php $this->part('text-image-complementary--faviconPng') ?>
+        </template>
+
+        <template #share="{tab}">
+            <?php $this->part('text-image-complementary--share') ?>
+        </template>
     </oc-tabs>
 </div>

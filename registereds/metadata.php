@@ -219,7 +219,7 @@ $metadata = [
         'label' => i::__('Descrição da seção Desenvolvedores na página inicial, com limite de 250 caracteres.'),
         'type' => 'textarea',
     ],
-    // Imagens diversas
+    // Imagens diversas logotipo
     'typeLogoDefinition' => [
         'label' => i::__('Defina aqui como deseja utilizar o logotipo do ambiente'),
         'type' => 'radio',
@@ -260,6 +260,21 @@ $metadata = [
     ],
     'imageLogoData' => [
         'label' => i::__('Logotipo'),
+        'type' => 'json',
+    ],
+     // Imagens diversas Favicon SVG
+    'faviconSvgData' => [
+        'label' => i::__('Favicon SVG'),
+        'type' => 'json',
+    ],
+     // Imagens diversas Favicon PNG
+     'faviconPngData' => [
+        'label' => i::__('Favicon PNG'),
+        'type' => 'json',
+    ],
+     // Imagens diversas Imagem de compartilhamento
+     'shareData' => [
+        'label' => i::__('Imagem de compartilhamento'),
         'type' => 'json',
     ],
 ];

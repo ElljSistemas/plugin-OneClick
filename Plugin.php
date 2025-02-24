@@ -191,6 +191,8 @@ class Plugin extends \MapasCulturais\Plugin
                 $self->setImagesHome($settings, $app);
                 $self->setTextsHome($settings, $app);
                 $self->setLogoDefinitions($settings, $app);
+                $self->setFaviconDefinitions($settings, $app);
+                $self->setShare($settings, $app);
             }
             
 
@@ -514,10 +516,48 @@ class Plugin extends \MapasCulturais\Plugin
                 $logo_image_file =   basename($imageLogoData->path);
                 $app->config['logo.image'] = "img/home/{$logo_image_file}";
                 $public_logo_url = $app->view->asset("img/home/{$logo_image_file}", false);
-                $app->view->jsObject['config']['oneClickUploads']['logo-image'] = $public_logo_url;
             }
+            $app->view->jsObject['config']['oneClickUploads']['logo-image'] = $public_logo_url;
         }
     }
+
+    /**
+     * @param null|Settings $settings 
+     * @param App $app 
+     * @return void 
+     * @throws Exception 
+     */
+    public function setFaviconDefinitions(?Settings $settings, App $app): void
+    {
+        $public_faviconSVG_url = null;
+        if($faviconSvgData = $settings->faviconSvgData) {
+            $faviconSVG_image_file =   basename($faviconSvgData->path);
+            $app->config['favicon.svg'] = "img/home/{$faviconSVG_image_file}";
+            $public_faviconSVG_url = $app->view->asset("img/home/{$faviconSVG_image_file}", false);
+            $app->view->jsObject['config']['oneClickUploads']['favicon-svg'] = $public_faviconSVG_url;
+        }
+
+        $public_faviconPNG_url = null;
+        if($faviconPngData = $settings->faviconPngData) {
+            $faviconPNG_image_file =   basename($faviconPngData->path);
+            $app->config['favicon.png'] = "img/home/{$faviconPNG_image_file}";
+            $public_faviconPNG_url = $app->view->asset("img/home/{$faviconPNG_image_file}", false);
+            $app->view->jsObject['config']['oneClickUploads']['favicon-png'] = $public_faviconPNG_url;
+        }
+    }
+
+    public function setShare(?Settings $settings, App $app): void
+    {
+        $public_share_url = null;
+        if($shareData = $settings->shareData) {
+            $share_image_file =   basename($shareData->path);
+            $app->config['share.image'] = "img/home/{$share_image_file}";
+            $public_share_url = $app->view->asset("img/home/{$share_image_file}", false);
+            $app->view->jsObject['config']['oneClickUploads']['share-image'] = $public_share_url;
+        }
+    }
+    
+    
     
 
     /**
