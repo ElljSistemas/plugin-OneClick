@@ -33,6 +33,10 @@ app.component('oc-upload', {
             type: Array,
             default: [1170, 390]
         },
+        imageFinalName: {
+            type: [Boolean, String],
+            default: false
+        },
     },
 
     data() {
@@ -94,6 +98,10 @@ app.component('oc-upload', {
             const url = Utils.createUrl('settings', 'upload', [this.entity.id]);
             const data = new FormData();
 
+
+            if(this.imageFinalName) {
+                data.append('imageFinalName', this.imageFinalName);
+            }
 
             data.append('ocFileUpload', this.newFile);
             data.append('prop', this.prop);

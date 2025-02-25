@@ -31,5 +31,9 @@ $this->import('
         <template #share="{tab}">
             <?php $this->part('text-image-complementary--share') ?>
         </template>
+
+        <template #imgMail="{tab}">
+            <?php $this->part('text-image-complementary--mail') ?>
+        </template>
     </oc-tabs>
 </div>

@@ -277,6 +277,11 @@ $metadata = [
         'label' => i::__('Imagem de compartilhamento'),
         'type' => 'json',
     ],
+    // Imagens diversas Imagem de email
+    'mailImageData' => [
+        'label' => i::__('Imagem de email'),
+        'type' => 'json',
+    ],
 ];
 
 return $metadata;

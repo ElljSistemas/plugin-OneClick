@@ -110,6 +110,10 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
             $metadataFiles = $this->fromToFilesMetadata();
             $metadata = $metadataFiles[$prop];
 
+            if(isset($this->data['imageFinalName'])) {
+                $new_name = $this->data['imageFinalName'];
+            }
+
             $dir = __DIR__ . "/files";
             if (isset($this->data['dir'])) {
                 $dir = __DIR__ . "/" . $this->data['dir'];
@@ -174,6 +178,7 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
             'favicon-svg' => 'faviconSvgData',
             'favicon-png' => 'faviconPngData',
             'share-image' => 'shareData',
+            'mail-image' => 'mailImageData'
         ];
     }
 }

@@ -192,6 +192,7 @@ class Plugin extends \MapasCulturais\Plugin
                 $self->setLogoDefinitions($settings, $app);
                 $self->setFaviconDefinitions($settings, $app);
                 $self->setShare($settings, $app);
+                $self->setMailImage($settings, $app);
             }
 
 
@@ -544,6 +545,12 @@ class Plugin extends \MapasCulturais\Plugin
         }
     }
 
+    /**
+     * @param null|Settings $settings 
+     * @param App $app 
+     * @return void 
+     * @throws Exception 
+     */
     public function setShare(?Settings $settings, App $app): void
     {
         $public_share_url = null;
@@ -552,6 +559,22 @@ class Plugin extends \MapasCulturais\Plugin
             $app->config['share.image'] = "img/home/{$share_image_file}";
             $public_share_url = $app->view->asset("img/home/{$share_image_file}", false);
             $app->view->jsObject['config']['oneClickUploads']['share-image'] = $public_share_url;
+        }
+    }
+
+    /**
+     * @param null|Settings $settings 
+     * @param App $app 
+     * @return void 
+     * @throws Exception 
+     */
+    public function setMailImage(?Settings $settings, App $app): void
+    {
+        $public_mail_image = null;
+        if ($mailImageData = $settings->mailImageData) {
+            $mail_image_file =   basename($mailImageData->path);
+            $public_mail_image = $app->view->asset("img/{$mail_image_file}", false);
+            $app->view->jsObject['config']['oneClickUploads']['mail-image'] = $public_mail_image;
         }
     }
 
