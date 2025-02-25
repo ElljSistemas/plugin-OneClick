@@ -65,6 +65,10 @@ app.component('configuration-steps', {
                     this.messages.error(this.text('sendEmailTestError'));
                 }
             });
+        },
+        toggle(popover,emailTest) {
+            this.emailTest = "";
+            popover.toggle();
         }
     }
 });

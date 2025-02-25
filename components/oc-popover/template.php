@@ -16,7 +16,7 @@ $this->import('mc-icon');
     </button>
     <transition name="fade">
         <div class="content" :class="`position-${position}`" v-show="toggle">
-            <slot name="content">
+            <slot name="content" :popover="{toggle:togglePopover,_toggle:toggle}">
                 <?= i::__('Conteúdo do popover') ?>
             </slot>
         </div>

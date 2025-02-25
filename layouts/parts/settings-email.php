@@ -11,6 +11,7 @@ $this->import('
     entity-field
     oc-dialog
     oc-popover
+    mc-icon
  ');
 
 ?>
@@ -31,12 +32,13 @@ $this->import('
         <entity-field :entity="entity" prop="mailer_repassword" class="col-6"></entity-field>
         <div class="col-12 email-test">
             <oc-popover position="left">
-                <template #content>
+                <template #content="{popover}">
                     <mc-loading :condition="isLoading">
                         <template #default="{ entity }">
                             <?= i::__('Enviando e-mail, aguarde') ?>
                         </template>
                     </mc-loading>
+                    <mc-icon name="one-click-close-rounded" @click="toggle(popover, emailTest)"></mc-icon>
                     <div v-if="!isLoading" class="field">
                         <input v-model="emailTest" type="text" class="" autocomplete="off" value="">
                     </div>
