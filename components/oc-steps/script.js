@@ -24,15 +24,30 @@ app.component('oc-steps', {
     },
     methods: {
         hasActive() {
-            for (step of this.steps) {
-                if (step.isActive) {
-                    return true;
+            let stepActive = localStorage.getItem("stepActive");
+            if(stepActive) {
+                this.steps.forEach(element => {
+                    element.isActive = false
+                });
+    
+                this.steps.forEach(element => {
+                    if(stepActive && stepActive == element.ref) {
+                        element.isActive = true
+                        this.stepActive = element.ref;
+                    }
+                });
+            } else {
+                for (step of this.steps) {
+                    if (step.isActive) {
+                        return true;
+                    }
+                    return false;
                 }
-                return false;
             }
         },
         changeStep(ref) {
             if (ref != this.stepActive) {
+                localStorage.setItem("stepActive", ref);
                 for (step of this.steps) {
                     step.isActive = false;
                     if (step.ref == ref) {

@@ -15,7 +15,7 @@ $this->import('
 ?>
 
 <div class="oc-entities">
-    <oc-tabs :entity="entity" :groups="tabGroups" initial-group="tabs">
+    <oc-tabs :entity="entity" :groups="tabGroups" initial-group="tabs" sotarege-ref="entities">
 
         <template #entitiesSection="{tab, entity}">
             <?php $this->part('text-image-entities--section') ?>

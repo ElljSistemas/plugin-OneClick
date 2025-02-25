@@ -15,7 +15,7 @@ $this->import('
 ')
 ?>
 <div class="complementary-tabs">
-    <oc-tabs :entity="entity" :groups="tabGroups" initial-group="tabs">
+    <oc-tabs :entity="entity" :groups="tabGroups" initial-group="tabs" sotarege-ref="complementary">
         <template #logo="{tab}">
             <?php $this->part('text-image-complementary--logo') ?>
         </template>

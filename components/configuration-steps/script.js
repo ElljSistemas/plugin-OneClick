@@ -69,6 +69,13 @@ app.component('configuration-steps', {
         toggle(popover,emailTest) {
             this.emailTest = "";
             popover.toggle();
+        },
+        initialGroup() {
+            if(localStorage.getItem("stepActive")) {
+                return localStorage.getItem("stepActive");
+            }
+
+            return 'settings';
         }
     }
 });

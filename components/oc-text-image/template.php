@@ -14,7 +14,7 @@ $this->import('
 
 <div class="oc-text-image">
     <div class="sub-menu">
-        <oc-tabs :entity="entity" :groups="tabGroups" initial-group="tabs">
+        <oc-tabs :entity="entity" :groups="tabGroups" initial-group="tabs" sotarege-ref="textImages">
             <template #text="{tab}">
                 <slot :name="`${slug}-text`" :tab="tab" :entity="entity">
                     <?= i::__('Conteúdo da aba') ?> {{tab.label}} do {{slug}}

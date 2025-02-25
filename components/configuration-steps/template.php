@@ -28,7 +28,7 @@ $this->import('
     </div>
 
     <div class="menu">
-        <oc-tabs :entity="entity" :groups="tabGroups" initial-group="settings">
+        <oc-tabs :entity="entity" :groups="tabGroups" :initial-group="initialGroup()" sotarege-ref="initial">
             <template #email="{tab}">
                 <?php $this->part('settings-email') ?>
             </template>
