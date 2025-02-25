@@ -18,8 +18,8 @@ app.component('oc-complementary', {
             {
                 return {
                     tabs: [
-                        { label: 'Logotipo', isActive: false, submenu: [], ref: 'logo', useActions: true },
-                        { label: 'Favicon SVG', isActive: true, submenu: [], ref: 'faviconSvg', useActions: false },
+                        { label: 'Logotipo', isActive: true, submenu: [], ref: 'logo', useActions: true },
+                        { label: 'Favicon SVG', isActive: false, submenu: [], ref: 'faviconSvg', useActions: false },
                         { label: 'Favicon PNG', isActive: false, submenu: [], ref: 'faviconPng', useActions: false },
                         { label: 'Imagem de compartilhamento', isActive: false, submenu: [], ref: 'share', useActions: false },
                         { label: 'Imagem de Email', isActive: false, submenu: [], ref: 'imgMail', useActions: false },

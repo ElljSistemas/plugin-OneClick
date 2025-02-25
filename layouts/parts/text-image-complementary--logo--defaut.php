@@ -27,8 +27,8 @@ $this->import('
         </div>
     </div>
 
-      <!-- Part 2 -->
-      <div class="color-item">
+    <!-- Part 2 -->
+    <div class="color-item">
         <div class="polygon2" :style="`background-color:${entity.logoColorPart2}`"></div>
         <div class="text" :style="`color:${entity.logoColorPart2}`">{{entity.logoColorPart2}}</div>
         <div class="color-field">
@@ -39,8 +39,8 @@ $this->import('
         </div>
     </div>
 
-     <!-- Part 3 -->
-     <div class="color-item">
+    <!-- Part 3 -->
+    <div class="color-item">
         <div class="polygon3" :style="`background-color:${entity.logoColorPart3}`"></div>
         <div class="text" :style="`color:${entity.logoColorPart3}`">{{entity.logoColorPart3}}</div>
         <div class="color-field">
@@ -51,8 +51,8 @@ $this->import('
         </div>
     </div>
 
-      <!-- Part 4 -->
-      <div class="color-item">
+    <!-- Part 4 -->
+    <div class="color-item">
         <div class="polygon4" :style="`background-color:${entity.logoColorPart4}`"></div>
         <div class="text" :style="`color:${entity.logoColorPart4}`">{{entity.logoColorPart4}}</div>
         <div class="color-field">
@@ -68,4 +68,9 @@ $this->import('
     <theme-logo :title="entity.logoDefaultTitle" :subtitle="entity.logoDefaultSubTitle" :style="{'--logo-bg1': entity.logoColorPart1, '--logo-bg2': entity.logoColorPart2, '--logo-bg3': entity.logoColorPart3, '--logo-bg4': entity.logoColorPart4}"></theme-logo>
     <entity-field :entity="entity" prop="logoDefaultTitle"></entity-field>
     <entity-field :entity="entity" prop="logoDefaultSubTitle"></entity-field>
+
+
+    <div class="btn-entity-actions">
+        <oc-actions :entity="entity" editable></oc-actions>
+    </div>
 </div>

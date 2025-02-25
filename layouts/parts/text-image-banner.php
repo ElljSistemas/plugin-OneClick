@@ -33,6 +33,10 @@ $this->import('
                     <entity-field :entity="entity" prop="bannerDescription" class="col-12" :maxLength="600"></entity-field>
                 </div>
             </div>
+
+            <div class="btn-entity-actions">
+                <oc-actions :entity="entity" editable></oc-actions>
+            </div>
         </template>
         <template #banner-image="{tab, entity}">
             <div class="upload-area">

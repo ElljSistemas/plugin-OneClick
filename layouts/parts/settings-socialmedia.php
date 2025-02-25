@@ -19,4 +19,8 @@ $this->import('
         </template>
     </oc-dialog>
     <oc-socialmedia :entity="entity"></oc-socialmedia>
+
+    <div class="btn-entity-actions">
+        <oc-actions :entity="entity" editable></oc-actions>
+    </div>
 </div>

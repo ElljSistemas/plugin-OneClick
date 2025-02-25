@@ -28,7 +28,7 @@ $this->import('
     </div>
 
     <div class="menu">
-        <oc-tabs :entity="entity" :groups="tabGroups" initial-group="text-image">
+        <oc-tabs :entity="entity" :groups="tabGroups" initial-group="settings">
             <template #email="{tab}">
                 <?php $this->part('settings-email') ?>
             </template>
@@ -73,9 +73,5 @@ $this->import('
                 <?php $this->part('text-image-complementary') ?>
             </template>
         </oc-tabs>
-    </div>
-
-    <div class="actions">
-        <oc-actions :entity="entity" editable></oc-actions>
     </div>
 </mc-entity>

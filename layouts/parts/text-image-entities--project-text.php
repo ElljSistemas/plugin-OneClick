@@ -19,3 +19,7 @@ use MapasCulturais\i;
 <div class="gird-12">
     <entity-field :entity="entity" prop="entityProjectDescription" class="col-12" :maxLength="600"></entity-field>
 </div>
+
+<div class="btn-entity-actions__complement">
+    <oc-actions :entity="entity" editable></oc-actions>
+</div>

@@ -25,4 +25,8 @@ $this->import('
         <entity-field :entity="entity" prop="recaptcha_sitekey" class="col-6"></entity-field>
         <entity-field :entity="entity" prop="recaptcha_secret" class="col-6"></entity-field>
     </div>
+
+    <div class="btn-entity-actions">
+        <oc-actions :entity="entity" editable></oc-actions>
+    </div>
 </div>

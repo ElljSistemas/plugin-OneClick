@@ -21,3 +21,12 @@ ul {
 .fbold {
     font-weight: bold
 }
+
+.btn-entity-actions {
+    background-color: #fff;
+    padding: 0px;
+    margin-top: 30px;
+    &__complement {
+        margin-top: 150px;
+    }
+}

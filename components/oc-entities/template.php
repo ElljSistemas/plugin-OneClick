@@ -19,6 +19,10 @@ $this->import('
 
         <template #entitiesSection="{tab, entity}">
             <?php $this->part('text-image-entities--section') ?>
+
+            <div class="btn-entity-actions">
+                <oc-actions :entity="entity" editable></oc-actions>
+            </div>
         </template>
 
         <template #opportunity="{tab}">

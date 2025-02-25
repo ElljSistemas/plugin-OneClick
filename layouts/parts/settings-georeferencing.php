@@ -21,4 +21,8 @@ $this->import('
         </template>
     </oc-dialog>
     <oc-georeferencing :entity="entity"></oc-georeferencing>
+
+    <div class="btn-entity-actions">
+        <oc-actions :entity="entity" editable></oc-actions>
+    </div>
 </div>

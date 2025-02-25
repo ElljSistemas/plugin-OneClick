@@ -30,4 +30,8 @@ $this->import('
             <entity-field :entity="entity" prop="featureDescription" class="col-12" :maxLength="250"></entity-field>
         </div>
     </div>
+
+    <div class="btn-entity-actions">
+        <oc-actions :entity="entity" editable></oc-actions>
+    </div>
 </div>
