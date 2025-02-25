@@ -2,6 +2,10 @@ app.component('oc-upload', {
     template: $TEMPLATES['oc-upload'],
     emits: ['setFile'],
 
+    mounted() {
+        window.addEventListener('resetPreviewImage', this.resetPreviewImage);
+    },
+
     setup() {
         const text = Utils.getTexts('oc-upload')
         const messages = useMessages();
@@ -92,6 +96,12 @@ app.component('oc-upload', {
             this.previewImage = null; // Limpa o preview
             event.target.value = ""; // Reseta o valor do input
         },
+
+        resetPreviewImage() {
+            this.previewImage = null;
+            $MAPAS.config.oneClickUploads[this.prop] = null
+        },
+
 
         async upload() {
             const api = new API();

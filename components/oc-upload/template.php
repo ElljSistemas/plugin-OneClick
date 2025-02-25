@@ -26,4 +26,9 @@ $this->import('mc-icon');
             <input id="newFile" type="file" @change="setFile($event)" ref="file" />
         </label>
     </form>
+
+    <div class="reset-values">
+        <oc-reset-default-values :entity="entity" :prop="prop"></oc-reset-default-values>
+    </div>
+
 </div>

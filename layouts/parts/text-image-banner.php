@@ -13,6 +13,7 @@ $this->import('
     mc-image-uploader
     mc-alert
     entity-field
+    oc-reset-default-values
 ');
 ?>
 

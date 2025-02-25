@@ -3,8 +3,11 @@
 namespace OneClick;
 
 use DateTime;
+use MapasCulturais\App;
+use MapasCulturais\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use MapasCulturais\Traits\EntityMetadata;
+
 
 /**
  * Settings
@@ -21,7 +24,7 @@ use MapasCulturais\Traits\EntityMetadata;
  * @ORM\Entity
  * @ORM\entity(repositoryClass="OneClick\Repositories\Settings")
  */
-class Settings extends \MapasCulturais\Entity
+class Settings extends Entity
 {
     use EntityMetadata;
 
@@ -80,8 +83,41 @@ class Settings extends \MapasCulturais\Entity
     protected $subsiteId;
 
     /**
-    * @ORM\OneToMany(targetEntity="OneClick\SettingsMeta", mappedBy="owner", cascade={"remove"}, orphanRemoval=true)
-    */
+     * @ORM\OneToMany(targetEntity="OneClick\SettingsMeta", mappedBy="owner", cascade={"remove"}, orphanRemoval=true)
+     */
     protected $__metadata = [];
 
+    /**
+     * Returns the owner User of this entity
+     *
+     * @return \MapasCulturais\Entities\User
+     */
+    function getOwnerUser()
+    {
+        $app = App::i();
+        return $app->user;;
+    }
+
+
+
+    /**
+     * @return array 
+     */
+    public function fromToFilesMetadata(): array
+    {
+        return [
+            'home-header' => 'bannerImageData',
+            'home-opportunities' => 'entitiesOpportunityImageData',
+            'home-events' => 'entitiesEventImageData',
+            'home-spaces' => 'entitiesSpaceImageData',
+            'home-agents' => 'entitiesAgentImageData',
+            'home-projects' => 'entitiesProjectImageData',
+            'home-register' => 'registerImageData',
+            'logo-image' => 'imageLogoData',
+            'favicon-svg' => 'faviconSvgData',
+            'favicon-png' => 'faviconPngData',
+            'share-image' => 'shareData',
+            'mail-image' => 'mailImageData'
+        ];
+    }
 }

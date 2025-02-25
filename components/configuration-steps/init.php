@@ -14,5 +14,5 @@ if ($subsite = $app->subsite) {
 }
 
 $this->jsObject['config']['oneClick'] = [
-    'settingsId' => $settings_id
+    'settingsId' => $settings_id,
 ];

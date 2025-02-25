@@ -107,8 +107,7 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
             $new_name = (new DateTime("now"))->getTimestamp();
             $ext = pathinfo($oldName, PATHINFO_EXTENSION);
             $prop = $this->data['prop'];
-            $metadataFiles = $this->fromToFilesMetadata();
-            $metadata = $metadataFiles[$prop];
+
 
             if(isset($this->data['imageFinalName'])) {
                 $new_name = $this->data['imageFinalName'];
@@ -128,8 +127,12 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
                 unlink($path);
             }
 
+            /** @var Settings $settings */
             if ($settings = $app->repo('OneClick\\Settings')->find($this->data['id'])) {
 
+                $metadataFiles = $settings->fromToFilesMetadata();
+                $metadata = $metadataFiles[$prop];
+            
                 $bannerImageData = [];
                 $old_image = null;
                 if ($bannerImageData = $settings->$metadata) {
@@ -159,26 +162,5 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
         }
 
         $this->json(false);
-    }
-
-    /**
-     * @return array 
-     */
-    protected function fromToFilesMetadata(): array
-    {
-        return [
-            'home-header' => 'bannerImageData',
-            'home-opportunities' => 'entitiesOpportunityImageData',
-            'home-events' => 'entitiesEventImageData',
-            'home-spaces' => 'entitiesSpaceImageData',
-            'home-agents' => 'entitiesAgentImageData',
-            'home-projects' => 'entitiesProjectImageData',
-            'home-register' => 'registerImageData',
-            'logo-image' => 'imageLogoData',
-            'favicon-svg' => 'faviconSvgData',
-            'favicon-png' => 'faviconPngData',
-            'share-image' => 'shareData',
-            'mail-image' => 'mailImageData'
-        ];
     }
 }

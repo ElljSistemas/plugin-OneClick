@@ -193,6 +193,7 @@ class Plugin extends \MapasCulturais\Plugin
                 $self->setFaviconDefinitions($settings, $app);
                 $self->setShare($settings, $app);
                 $self->setMailImage($settings, $app);
+                $app->view->jsObject['fromToFilesMetadata'] = $settings->fromToFilesMetadata();
             }
 
 
