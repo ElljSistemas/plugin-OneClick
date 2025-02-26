@@ -72,6 +72,9 @@ $this->import('
             <template #complementary>
                 <?php $this->part('text-image-complementary') ?>
             </template>
+            <template #colors>
+                <?php $this->part('colors') ?>
+            </template>
         </oc-tabs>
     </div>
 </mc-entity>

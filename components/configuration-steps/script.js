@@ -43,6 +43,9 @@ app.component('configuration-steps', {
                 { label: 'Desenvolvedores', isActive: false, submenu: [], ref: "developer", useActions: true },
                 { label: 'Diversas', isActive: false, submenu: [], ref: "complementary", useActions: true },
             ],
+            'colors': [
+                { label: '', isActive: true, submenu: [], ref: "colors", useActions: true },
+            ],
         }
 
         return {

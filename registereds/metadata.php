@@ -201,8 +201,8 @@ $metadata = [
         'label' => i::__('Descrição da seção de Casdastre-se na página inicial, com limite de 300 caracteres.'),
         'type' => 'textarea',
     ],
-     // Mapa
-     'mapTitle' => [
+    // Mapa
+    'mapTitle' => [
         'label' => i::__('Título da seção Mapa na página inicial, com limite de 65 caracteres.'),
         'type' => 'text',
     ],
@@ -210,8 +210,8 @@ $metadata = [
         'label' => i::__('Descrição da seção Mapa na página inicial, com limite de 250 caracteres.'),
         'type' => 'textarea',
     ],
-     // Desenvolvedores
-     'developerTitle' => [
+    // Desenvolvedores
+    'developerTitle' => [
         'label' => i::__('Título da seção Desenvolvedores na página inicial, com limite de 65 caracteres.'),
         'type' => 'text',
     ],
@@ -262,18 +262,18 @@ $metadata = [
         'label' => i::__('Logotipo'),
         'type' => 'json',
     ],
-     // Imagens diversas Favicon SVG
+    // Imagens diversas Favicon SVG
     'faviconSvgData' => [
         'label' => i::__('Favicon SVG'),
         'type' => 'json',
     ],
-     // Imagens diversas Favicon PNG
-     'faviconPngData' => [
+    // Imagens diversas Favicon PNG
+    'faviconPngData' => [
         'label' => i::__('Favicon PNG'),
         'type' => 'json',
     ],
-     // Imagens diversas Imagem de compartilhamento
-     'shareData' => [
+    // Imagens diversas Imagem de compartilhamento
+    'shareData' => [
         'label' => i::__('Imagem de compartilhamento'),
         'type' => 'json',
     ],
@@ -281,6 +281,58 @@ $metadata = [
     'mailImageData' => [
         'label' => i::__('Imagem de email'),
         'type' => 'json',
+    ],
+    // Cor principal
+    'primaryColor' => [
+        'label' => i::__('Cor primaria do ambiente'),
+        'type' => 'color',
+        'default' => null,
+    ],
+    'secondaryColor' => [
+        'label' => i::__('Cor secundária do ambiente'),
+        'type' => 'color',
+        'default' => null,
+    ],
+    // Cor Oportunidade
+    'opportunitiesColor' => [
+        'label' => i::__('Cor da entidade Oportunidade'),
+        'type' => 'color',
+        'default' => null,
+    ],
+     // Cor Agentes
+     'agentsColor' => [
+        'label' => i::__('Cor da entidade Agentes'),
+        'type' => 'color',
+        'default' => null,
+    ],
+     // Cor Eventos
+     'eventsColor' => [
+        'label' => i::__('Cor da entidade Eventos'),
+        'type' => 'color',
+        'default' => null,
+    ],
+     // Cor Espaços
+     'spacesColor' => [
+        'label' => i::__('Cor da entidade Espaços'),
+        'type' => 'color',
+        'default' => null,
+    ],
+    // Cor Projetos
+    'projectsColor' => [
+        'label' => i::__('Cor da entidade Projetos'),
+        'type' => 'color',
+        'default' => null,
+    ],
+     // Cor Projetos
+     'sealsColor' => [
+        'label' => i::__('Cor da entidade Selos'),
+        'type' => 'color',
+        'default' => null,
+    ],
+    'enabledCacheColor' => [
+        'label' => i::__('Cache de cor desabilitado'),
+        'type' => 'boolean',
+        'default' => true,
     ],
 ];
 

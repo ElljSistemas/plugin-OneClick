@@ -35,10 +35,10 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
     public function GET_steps(): void
     {
         $app = App::i();
-        
+
         $this->requireAuthentication();
 
-        if(!$app->user->is('admin')) {
+        if (!$app->user->is('admin')) {
             $app->pass();
         }
 
@@ -62,7 +62,7 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
 
         $this->requireAuthentication();
 
-        if(!$app->user->is('admin')) {
+        if (!$app->user->is('admin')) {
             $app->pass();
         }
 
@@ -74,7 +74,7 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
         $message = $app->renderMailerTemplate('email_teste_settings', $params);
         $email_params = [
             'from' => $app->config['mailer.from'],
-            'to' =>$email,
+            'to' => $email,
             'subject' => $message['title'],
             'body' => $message['body'],
         ];
@@ -109,7 +109,7 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
             $prop = $this->data['prop'];
 
 
-            if(isset($this->data['imageFinalName'])) {
+            if (isset($this->data['imageFinalName'])) {
                 $new_name = $this->data['imageFinalName'];
             }
 
@@ -122,7 +122,7 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
                 mkdir($dir, 0755, true);
             }
 
-            $path = $dir . "/" . $new_name.".$ext";
+            $path = $dir . "/" . $new_name . ".$ext";
             if (file_exists($path)) {
                 unlink($path);
             }
@@ -132,7 +132,7 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
 
                 $metadataFiles = $settings->fromToFilesMetadata();
                 $metadata = $metadataFiles[$prop];
-            
+
                 $bannerImageData = [];
                 $old_image = null;
                 if ($bannerImageData = $settings->$metadata) {
@@ -146,7 +146,7 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
                     'oldName' => $oldName,
                     'ext' => $ext,
                     'dateUpload' => (new DateTime("now"))->format('Y-m-d H:i:s'),
-                    'new_name' => $new_name.".$ext",
+                    'new_name' => $new_name . ".$ext",
                 ];
 
                 if (move_uploaded_file($fileTmpPath, $path)) {
@@ -162,5 +162,23 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
         }
 
         $this->json(false);
+    }
+
+    public function  POST_clearCache()
+    {
+        $app = App::i();
+
+        $this->requireAuthentication();
+
+        if (!$app->user->is('admin')) {
+            $app->pass();
+        }
+
+        $cache_id = "ocCostumizerColors";
+        if ($app->mscache->contains($cache_id)) {
+            $app->mscache->delete($cache_id);
+        }
+
+        $this->json(true);
     }
 }

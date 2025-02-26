@@ -2,6 +2,7 @@
 
 namespace OneClick;
 
+use DateTime;
 use Exception;
 use MapasCulturais\i;
 use OneClick\Settings;
@@ -193,6 +194,7 @@ class Plugin extends \MapasCulturais\Plugin
                 $self->setFaviconDefinitions($settings, $app);
                 $self->setShare($settings, $app);
                 $self->setMailImage($settings, $app);
+                $self->setColors($settings, $app);
                 $app->view->jsObject['fromToFilesMetadata'] = $settings->fromToFilesMetadata();
             }
 
@@ -576,6 +578,95 @@ class Plugin extends \MapasCulturais\Plugin
             $mail_image_file =   basename($mailImageData->path);
             $public_mail_image = $app->view->asset("img/{$mail_image_file}", false);
             $app->view->jsObject['config']['oneClickUploads']['mail-image'] = $public_mail_image;
+        }
+    }
+
+    /**
+     * @param null|Settings $settings 
+     * @param App $app 
+     * @return void 
+     */
+    public function setColors(?Settings $settings, App $app)
+    {
+        if ($settings) {
+            $cache_id = (new DateTime('now'))->getTimestamp();
+            $css = null;
+            if ($app->mscache->contains($cache_id)) {
+                $css = $app->mscache->fetch($cache_id);
+            }
+
+            if (!$css) {
+                $css_map = [
+                    'primary',
+                    'secondary',
+                    'seals',
+                    'agents',
+                    'events',
+                    'opportunities',
+                    'projects',
+                    'spaces',
+                ];
+
+                $variable_part = [];
+                $root_part = [];
+
+                foreach ($css_map as $var) {
+                    $meta = "{$var}Color";
+                    $color = $settings->$meta;
+
+                    if ($color) {
+                        $variable_part[] = "
+                        \$$var-500: $color !default;
+                        \$$var-300: lighten(\$$var-500, \$lightness-300) !default;
+                        \$$var-700: darken(\$$var-500, \$lightness-700) !default;
+                    ";
+
+                        $root_part[] = "
+                        --mc-$var-500: #{\$$var-500};
+                        --mc-$var-300: #{\$$var-300};
+                        --mc-$var-700: #{\$$var-700};
+                    ";
+                    }
+                }
+
+
+                if (!empty($variable_part) && !empty($root_part)) {
+                    $variable_part = implode("\n", $variable_part);
+                    $root_part = implode("\n", $root_part);
+
+                    $saas = "
+                    @use 'sass:color';
+
+                    // Default lightness deltas
+                    \$lightness-300: 25% !default;
+                    \$lightness-700: 25% !default;
+
+                    $variable_part
+
+                    :root {
+                        $root_part
+                    }
+                ";
+
+                    $scss_filename = tempnam(sys_get_temp_dir(), 'subsite-') . '.scss';
+                    $css_filename = tempnam(sys_get_temp_dir(), 'subsite-') . '.css';
+
+
+                    file_put_contents($scss_filename, $saas);
+                    exec("sass $scss_filename $css_filename --no-source-map");
+
+                    $css = file_get_contents($css_filename);
+
+
+                    $app->mscache->save($cache_id, $css);
+                }
+            }
+
+            $app->hook('template(<<*>>.body):after', function () use ($css) {
+                echo "
+                    <style> $css </style>
+                ";
+            });
         }
     }
 
