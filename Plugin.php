@@ -483,7 +483,7 @@ class Plugin extends \MapasCulturais\Plugin
     public function setColors(?Settings $settings, App $app)
     {
         if ($settings) {
-            $cache_id = (new DateTime('now'))->getTimestamp();
+            $cache_id = 'ocCostumizerColors';
             $css = null;
             if ($app->mscache->contains($cache_id)) {
                 $css = $app->mscache->fetch($cache_id);
