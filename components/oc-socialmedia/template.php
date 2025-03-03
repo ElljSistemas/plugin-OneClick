@@ -28,7 +28,7 @@ $this->import('
             </mc-multiselect>
         </div>
     </div>
-    <div v-if="entity.socialmedia.length > 0" class="fields">
+    <div v-if="entity.socialmedia?.length > 0" class="fields">
         <template v-for="media in entity.socialmedia">
             <div class="field">
                 <label class="field__title">{{socialmediaLabels[media]}}</label>
@@ -37,7 +37,7 @@ $this->import('
         </template>
     </div>
 
-    <div class="no-data" v-if="entity.socialmedia.length <= 0">
+    <div class="no-data" v-if="entity.socialmedia?.length <= 0">
         <?php i::_e("Nenhuma rede social foi configurada") ?>
     </div>
 </div>
