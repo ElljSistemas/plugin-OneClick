@@ -80,5 +80,12 @@ app.component('configuration-steps', {
 
             return 'settings';
         }
+    },
+    mounted() {
+        document.getElementById("main-app")?.classList.add("config-steps-active");
+    },
+
+    beforeUnmount() {
+        document.getElementById("main-app")?.classList.remove("config-steps-active");
     }
 });
