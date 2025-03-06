@@ -71,11 +71,11 @@ class Plugin extends \MapasCulturais\Plugin
 
         // hook responsável por setar as configurações em seus devidos lugares
         $app->hook('app.register:after', function () use ($self, $app) {
-            if(php_sapi_name() != "cli") {
+            if (php_sapi_name() != "cli") {
                 $app->disableAccessControl();
 
                 $settings = $self->getSettings();
-    
+
                 if ($settings) {
                     $self->setEmailSettings($settings, $app);
                     $self->setRecaptchaSettings($settings, $app);
@@ -90,10 +90,9 @@ class Plugin extends \MapasCulturais\Plugin
                     $self->setColors($settings, $app);
                     $app->view->jsObject['fromToFilesMetadata'] = $settings->fromToFilesMetadata();
                 }
-    
+
                 $app->enableAccessControl();
             }
-            
         });
     }
 
@@ -248,51 +247,65 @@ class Plugin extends \MapasCulturais\Plugin
     {
         $public_banner_url = null;
         if ($bannerImageData = $settings->bannerImageData) {
-            $banner_ile =   basename($bannerImageData->path);
-            $app->config['module.home']['home-header'] = "img/home/{$banner_ile}";
-            $public_banner_url = $app->view->asset("img/home/{$banner_ile}", false);
+            if (file_exists($bannerImageData->path)) {
+                $banner_ile =   basename($bannerImageData->path);
+                $app->config['module.home']['home-header'] = "img/home/{$banner_ile}";
+                $public_banner_url = $app->view->asset("img/home/{$banner_ile}", false);
+            }
         }
 
         $public_opportunity_url = null;
         if ($entitiesOpportunityImageData = $settings->entitiesOpportunityImageData) {
-            $entities_opportunity_file =   basename($entitiesOpportunityImageData->path);
-            $app->config['module.home']['home-opportunities'] = "img/home/{$entities_opportunity_file}";
-            $public_opportunity_url = $app->view->asset("img/home/{$entities_opportunity_file}", false);
+            if (file_exists($entitiesOpportunityImageData->path)) {
+                $entities_opportunity_file =   basename($entitiesOpportunityImageData->path);
+                $app->config['module.home']['home-opportunities'] = "img/home/{$entities_opportunity_file}";
+                $public_opportunity_url = $app->view->asset("img/home/{$entities_opportunity_file}", false);
+            }
         }
 
         $public_event_url = null;
         if ($entitiesEventImageData = $settings->entitiesEventImageData) {
-            $entities_event_file =   basename($entitiesEventImageData->path);
-            $app->config['module.home']['home-events'] = "img/home/{$entities_event_file}";
-            $public_event_url = $app->view->asset("img/home/{$entities_event_file}", false);
+            if (file_exists($entitiesEventImageData->path)) {
+                $entities_event_file =   basename($entitiesEventImageData->path);
+                $app->config['module.home']['home-events'] = "img/home/{$entities_event_file}";
+                $public_event_url = $app->view->asset("img/home/{$entities_event_file}", false);
+            }
         }
 
         $public_space_url = null;
         if ($entitiesSpaceImageData = $settings->entitiesSpaceImageData) {
-            $entities_space_file =   basename($entitiesSpaceImageData->path);
-            $app->config['module.home']['home-spaces'] = "img/home/{$entities_space_file}";
-            $public_space_url = $app->view->asset("img/home/{$entities_space_file}", false);
+            if (file_exists($entitiesSpaceImageData->path)) {
+                $entities_space_file =   basename($entitiesSpaceImageData->path);
+                $app->config['module.home']['home-spaces'] = "img/home/{$entities_space_file}";
+                $public_space_url = $app->view->asset("img/home/{$entities_space_file}", false);
+            }
         }
 
         $public_agent_url = null;
         if ($entitiesAgentImageData = $settings->entitiesAgentImageData) {
-            $entities_agent_file =   basename($entitiesAgentImageData->path);
-            $app->config['module.home']['home-agents'] = "img/home/{$entities_agent_file}";
-            $public_agent_url = $app->view->asset("img/home/{$entities_agent_file}", false);
+            if (file_exists($entitiesAgentImageData->path)) {
+                $entities_agent_file =   basename($entitiesAgentImageData->path);
+                $app->config['module.home']['home-agents'] = "img/home/{$entities_agent_file}";
+                $public_agent_url = $app->view->asset("img/home/{$entities_agent_file}", false);
+            }
         }
 
         $public_project_url = null;
         if ($entitiesProjectImageData = $settings->entitiesProjectImageData) {
-            $entities_project_file =   basename($entitiesProjectImageData->path);
-            $app->config['module.home']['home-projects'] = "img/home/{$entities_project_file}";
-            $public_project_url = $app->view->asset("img/home/{$entities_project_file}", false);
+            if (file_exists($entitiesProjectImageData->path)) {
+                $entities_project_file =   basename($entitiesProjectImageData->path);
+                $app->config['module.home']['home-projects'] = "img/home/{$entities_project_file}";
+                $public_project_url = $app->view->asset("img/home/{$entities_project_file}", false);
+            }
         }
 
         $public_register_url = null;
         if ($registerImageData = $settings->registerImageData) {
-            $entities_register_file =   basename($registerImageData->path);
-            $app->config['module.home']['home-register'] = "img/home/{$entities_register_file}";
-            $public_register_url = $app->view->asset("img/home/{$entities_register_file}", false);
+            if (file_exists($registerImageData->path)) {
+                $entities_register_file =   basename($registerImageData->path);
+                $app->config['module.home']['home-register'] = "img/home/{$entities_register_file}";
+                $public_register_url = $app->view->asset("img/home/{$entities_register_file}", false);
+            }
         }
 
         $app->view->jsObject['config']['oneClickUploads'] = [
@@ -452,10 +465,12 @@ class Plugin extends \MapasCulturais\Plugin
     {
         $public_share_url = null;
         if ($shareData = $settings->shareData) {
-            $share_image_file =   basename($shareData->path);
-            $app->config['share.image'] = "img/home/{$share_image_file}";
-            $public_share_url = $app->view->asset("img/home/{$share_image_file}", false);
-            $app->view->jsObject['config']['oneClickUploads']['share-image'] = $public_share_url;
+            if (file_exists($shareData->path)) {
+                $share_image_file =   basename($shareData->path);
+                $app->config['share.image'] = "img/home/{$share_image_file}";
+                $public_share_url = $app->view->asset("img/home/{$share_image_file}", false);
+                $app->view->jsObject['config']['oneClickUploads']['share-image'] = $public_share_url;
+            }
         }
     }
 
