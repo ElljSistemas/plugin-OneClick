@@ -41,10 +41,6 @@ app.component('oc-actions', {
             this.entity.save();
             this.$emit('save');
 
-            if(this.clearCache) {
-                this.clearCacheExec();
-            }
-
             if(this.reloadTime) {
                 setTimeout(() => {
                     window.location.reload();

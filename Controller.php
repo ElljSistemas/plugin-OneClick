@@ -14,6 +14,7 @@ use MapasCulturais\Traits\ControllerAPI;
 use MapasCulturais\Exceptions\MailTemplateNotFound;
 use MapasCulturais\Exceptions\PermissionDenied;
 use MapasCulturais\Exceptions\WorkflowRequest;
+use MapasCulturais\i;
 
 class Controller  extends \MapasCulturais\Controllers\EntityController
 {
@@ -180,5 +181,20 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
         }
 
         $this->json(true);
+    }
+
+    function ALL_clearCache() {
+        $app = App::i();
+        $url = $app->createUrl('settings', 'steps');
+        if ($app->user->is('superAdmin')) {
+            $app->cache->flushAll();
+        }
+
+        if ($app->user->is('saasSuperAdmin')) {
+            $app->mscache->flushAll();
+        }        
+        header("Location: {$url}");
+        exit;
+
     }
 }

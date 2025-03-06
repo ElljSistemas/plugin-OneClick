@@ -66,8 +66,8 @@ $this->import('
 
 <div class="right">
     <theme-logo :title="entity.logoDefaultTitle" :subtitle="entity.logoDefaultSubTitle" :style="{'--logo-bg1': entity.logoColorPart1, '--logo-bg2': entity.logoColorPart2, '--logo-bg3': entity.logoColorPart3, '--logo-bg4': entity.logoColorPart4}"></theme-logo>
-    <entity-field :entity="entity" prop="logoDefaultTitle"></entity-field>
-    <entity-field :entity="entity" prop="logoDefaultSubTitle"></entity-field>
+    <entity-field :entity="entity" prop="logoDefaultTitle" :maxLength="16"></entity-field>
+    <entity-field :entity="entity" prop="logoDefaultSubTitle" :maxLength="30"></entity-field>
 
 
     <div class="btn-entity-actions">

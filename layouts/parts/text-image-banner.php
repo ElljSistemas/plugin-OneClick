@@ -30,7 +30,7 @@ $this->import('
                 </oc-dialog>
 
                 <div class="grid-12">
-                    <entity-field :entity="entity" prop="bannerTitle" class="col-12"></entity-field>
+                    <entity-field :entity="entity" prop="bannerTitle" class="col-12" :maxLength="30"></entity-field>
                     <entity-field :entity="entity" prop="bannerDescription" class="col-12" :maxLength="600"></entity-field>
                 </div>
             </div>

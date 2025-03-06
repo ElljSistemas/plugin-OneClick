@@ -198,6 +198,6 @@ $this->import('
     </div>
 
     <div class="btn-entity-actions">
-        <oc-actions :entity="entity" editable :reload-time="1500" clear-cache></oc-actions>
+        <oc-actions :entity="entity" editable clear-cache></oc-actions>
     </div>
 </div>
