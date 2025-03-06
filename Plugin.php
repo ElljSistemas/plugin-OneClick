@@ -94,6 +94,19 @@ class Plugin extends \MapasCulturais\Plugin
                 $app->enableAccessControl();
             }
         });
+
+        // Insere novo menu no painel do usuario
+        $app->hook('panel.nav',function(&$nav_items) use($app) {
+            $nav_items['oneclick'] = [
+                'label' => i::__('OneClick'),
+                'condition' => function () use ($app) {
+                    return $app->user->is('admin');
+                },
+                'items' => [
+                    ['route' => 'settings/steps', 'icon' => 'one-click-brush', 'label' => i::__('Editor')],
+                ]
+            ];
+        });
     }
 
     /**
