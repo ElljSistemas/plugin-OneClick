@@ -109,7 +109,6 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
             $ext = pathinfo($oldName, PATHINFO_EXTENSION);
             $prop = $this->data['prop'];
 
-
             if (isset($this->data['imageFinalName'])) {
                 $new_name = $this->data['imageFinalName'];
             }
@@ -121,6 +120,8 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
 
             if (!is_dir($dir)) {
                 mkdir($dir, 0755, true);
+                chown($dir, 'www-data');
+                chgrp($dir, 'www-data');
             }
 
             $path = $dir . "/" . $new_name . ".$ext";
@@ -151,6 +152,9 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
                 ];
 
                 if (move_uploaded_file($fileTmpPath, $path)) {
+                    chown($path, 'www-data');
+                    chgrp($path, 'www-data');
+
                     if ($old_image && file_exists($old_image)) {
                         unlink($old_image);
                     }
@@ -164,6 +168,7 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
 
         $this->json(false);
     }
+
 
     public function  POST_clearCache()
     {
@@ -183,7 +188,8 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
         $this->json(true);
     }
 
-    function ALL_clearCache() {
+    function ALL_clearCache()
+    {
         $app = App::i();
         $url = $app->createUrl('settings', 'steps');
         if ($app->user->is('superAdmin')) {
@@ -192,9 +198,8 @@ class Controller  extends \MapasCulturais\Controllers\EntityController
 
         if ($app->user->is('saasSuperAdmin')) {
             $app->mscache->flushAll();
-        }        
+        }
         header("Location: {$url}");
         exit;
-
     }
 }
